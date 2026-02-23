@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomie tête et cou</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+    overflow: hidden;
+}
+
+#container {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.slide {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    scroll-snap-align: start;
+    opacity: 0.7;
+    transition: opacity 0.5s;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    max-width: 90%;
+    max-height: 70vh;
+    object-fit: contain;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.slide p {
+    margin-top: 15px;
+    font-size: 1.2em;
+    text-align: center;
+    max-width: 800px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+#play {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 22px;
+    border-radius: 40px;
+    border: none;
+    font-size: 1em;
+    background: #1db954;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 100;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#play:hover {
+    background: #1ed760;
+    transform: scale(1.05);
+}
+
+#play:active {
+    transform: scale(0.98);
+}
+
+#progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #333;
+    z-index: 101;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #1db954;
+    transition: width 0.1s;
+}
+
+#status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    z-index: 100;
+}
+
+#slide-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    z-index: 100;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="audio" src="/storage/emulated/0/MedScroll/tête.mp3"></audio>
+
+<div id="progress">
+    <div id="progress-bar"></div>
+</div>
+
+<div id="status">Prêt</div>
+<div id="slide-counter">Slide 1/12</div>
+
+<div id="container">
+
+<div class="slide active">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Anatomical_position_frontal.svg/1024px-Anatomical_position_frontal.svg.png">
+<p>Position anatomique de référence</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Sternocleidomastoid_muscle.png/800px-Sternocleidomastoid_muscle.png">
+<p>Flexion de la tête — sterno-cléido-mastoïdien</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Neck_muscles_lateral_view.png/800px-Neck_muscles_lateral_view.png">
+<p>Extension — muscles cervicaux postérieurs</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Atlanto-axial_joint.svg/1024px-Atlanto-axial_joint.svg.png">
+<p>Rotation — articulation atlanto-axiale (C1–C2)</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Neck_lateral_flexion.svg/1024px-Neck_lateral_flexion.svg.png">
+<p>Inclinaison latérale du cou</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Temporomandibular_joint.png/800px-Temporomandibular_joint.png">
+<p>Articulation temporo-mandibulaire</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Eyelid_muscles.png/800px-Eyelid_muscles.png">
+<p>Mouvements des paupières</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Facial_muscles.png/800px-Facial_muscles.png">
+<p>Mouvements des sourcils</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Nose_muscles.png/800px-Nose_muscles.png">
+<p>Mouvements du nez</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tongue_muscles_labeled.png/800px-Tongue_muscles_labeled.png">
+<p>Mouvements de la langue</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Larynx_labeled.png/800px-Larynx_labeled.png">
+<p>Pharynx et larynx</p>
+</div>
+
+<div class="slide">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Muscles_of_facial_expression.png/800px-Muscles_of_facial_expression.png">
+<p>Mimique faciale</p>
+</div>
+
+</div>
+
+<button id="play">▶ Lancer le cours</button>
+
+<script>
+const audio = document.getElementById("audio");
+const slides = document.querySelectorAll(".slide");
+const playButton = document.getElementById("play");
+const progressBar = document.getElementById("progress-bar");
+const statusElement = document.getElementById("status");
+const slideCounter = document.getElementById("slide-counter");
+
+// Timeline de synchronisation (en millisecondes)
+const timeline = [
+    6000, 8000, 8000, 8000, 7000, 10000,
+    6000, 6000, 6000, 9000, 9000, 8000
+];
+
+let isPlaying = false;
+let currentSlide = 0;
+let slideTimeouts = [];
+let totalDuration = timeline.reduce((a, b) => a + b, 0);
+
+// Fonction pour passer au slide suivant
+function goToSlide(slideIndex) {
+    if (slideIndex >= slides.length || slideIndex < 0) return;
+    
+    // Mettre à jour les classes actives
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[slideIndex].classList.add('active');
+    
+    // Faire défiler vers le slide
+    slides[slideIndex].scrollIntoView({ behavior: "smooth" });
+    
+    // Mettre à jour le compteur
+    currentSlide = slideIndex;
+    slideCounter.textContent = `Slide ${currentSlide + 1}/${slides.length}`;
+}
+
+// Fonction pour démarrer la présentation
+function startPresentation() {
+    if (isPlaying) return;
+    
+    // Réinitialiser
+    audio.currentTime = 0;
+    currentSlide = 0;
+    goToSlide(0);
+    
+    // Effacer les timeouts précédents
+    slideTimeouts.forEach(timeout => clearTimeout(timeout));
+    slideTimeouts = [];
+    
+    // Programmer les changements de slide
+    let accumulatedTime = 0;
+    for (let i = 0; i < timeline.length; i++) {
+        slideTimeouts.push(
+            setTimeout(() => {
+                if (isPlaying) {
+                    goToSlide(i);
+                }
+            }, accumulatedTime)
+        );
+        accumulatedTime += timeline[i];
+    }
+    
+    // Démarrer l'audio
+    audio.play();
+    isPlaying = true;
+    playButton.textContent = "⏸ Pause";
+    statusElement.textContent = "En cours...";
+    
+    // Démarrer la mise à jour de la progression
+    updateProgress();
+}
+
+// Arrêter la présentation
+function stopPresentation() {
+    isPlaying = false;
+    audio.pause();
+    playButton.textContent = "▶ Lancer le cours";
+    statusElement.textContent = "En pause";
+    
+    // Effacer tous les timeouts
+    slideTimeouts.forEach(timeout => clearTimeout(timeout));
+    slideTimeouts = [];
+}
+
+// Mise à jour de la barre de progression
+function updateProgress() {
+    if (!isPlaying) return;
+    
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = `${progress}%`;
+    
+    // Si l'audio est terminé
+    if (audio.currentTime >= audio.duration) {
+        stopPresentation();
+        statusElement.textContent = "Terminé";
+        progressBar.style.width = "100%";
+    } else {
+        requestAnimationFrame(updateProgress);
+    }
+}
+
+// Gérer le clic sur le bouton
+playButton.onclick = () => {
+    if (isPlaying) {
+        stopPresentation();
+    } else {
+        startPresentation();
+    }
+};
+
+// Navigation avec les flèches du clavier
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        if (currentSlide < slides.length - 1) {
+            goToSlide(currentSlide + 1);
+            if (isPlaying) {
+                stopPresentation();
+            }
+        }
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        if (currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+            if (isPlaying) {
+                stopPresentation();
+            }
+        }
+    } else if (e.key === ' ') {
+        e.preventDefault();
+        playButton.click();
+    }
+});
+
+// Mettre à jour le slide actuel lors du défilement manuel
+const container = document.getElementById('container');
+container.addEventListener('scroll', () => {
+    // Calculer quel slide est le plus visible
+    const containerRect = container.getBoundingClientRect();
+    let mostVisibleSlide = 0;
+    let maxVisibility = 0;
+    
+    slides.forEach((slide, index) => {
+        const slideRect = slide.getBoundingClientRect();
+        const visibility = Math.min(slideRect.bottom, containerRect.bottom) - 
+                          Math.max(slideRect.top, containerRect.top);
+        
+        if (visibility > maxVisibility) {
+            maxVisibility = visibility;
+            mostVisibleSlide = index;
+        }
+    });
+    
+    // Mettre à jour seulement si différent et si pas en mode lecture automatique
+    if (mostVisibleSlide !== currentSlide && !isPlaying) {
+        currentSlide = mostVisibleSlide;
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[currentSlide].classList.add('active');
+        slideCounter.textContent = `Slide ${currentSlide + 1}/${slides.length}`;
+    }
+});
+
+// Quand l'audio se termine
+audio.addEventListener('ended', () => {
+    stopPresentation();
+    statusElement.textContent = "Terminé";
+});
+
+// Mise à jour initiale
+slideCounter.textContent = `Slide 1/${slides.length}`;
+</script>
+
+</body>
+</html>
