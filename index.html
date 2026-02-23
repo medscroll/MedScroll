@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomie tête et cou</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+    overflow: hidden;
+}
+
+#container {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.slide {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    scroll-snap-align: start;
+    opacity: 0.7;
+    transition: opacity 0.5s;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    max-width: 90%;
+    max-height: 70vh;
+    object-fit: contain;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.slide p {
+    margin-top: 15px;
+    font-size: 1.2em;
+    text-align: center;
+    max-width: 800px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+#play {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 22px;
+    border-radius: 40px;
+    border: none;
+    font-size: 1em;
+    background: #1db954;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 100;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#play:hover {
+    background: #1ed760;
+    transform: scale(1.05);
+}
+
+#play:active {
+    transform: scale(0.98);
+}
+
+#progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #333;
+    z-index: 101;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #1db954;
+    transition: width 0.1s;
+}
+
+#status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    z-index: 100;
+}
+
+#slide-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    z-index: 100;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="audio" src="tête.mp3"></audio>
+<audio id="audio2" src="fond.m4a"></audio>
+<!-- ==================== -->
+<!-- INTRODUCTION GÉNÉRALE -->
+<!-- ==================== -->
+<div class="slide">
+    <img src="muscl_ner.jpeg">
+    <p>
+        ANATOMIE FONCTIONNELLE DE LA TÊTE ET DU COU<br>
+        Exploration détaillée des mouvements, de l’impulsion nerveuse
+        jusqu’à l’action musculaire.
+    </p>
+</div>
+
+<div class="slide">
+    <img src="ts_sys.jpg">
+    <p>
+        Chaque mouvement est analysé selon :
+        l’innervation, les muscles impliqués,
+        les os concernés et la vascularisation.
+    </p>
+</div>
+<div class="slide active">
+    <img src="pst_anat.png">
+    <p>Position anatomique de référence — tête droite, regard horizontal, membres supérieurs pendants</p>
+</div>
+
+<!-- =========================================== -->
+<!-- GROUPE 1 : MOUVEMENTS GÉNÉRAUX DE LA TÊTE -->
+<!-- =========================================== -->
+<div class="slide active">
+    <img src="mvts_gen.jpeg">
+    <p> GROUPE 1 : MOUVEMENTS GÉNÉRAUX DE LA TÊTE ET DU COU</p>
+</div>
+<div class="slide">
+    <img src="flex_t1.jpeg">
+    <p>FLEXION DE LA TÊTE — mouvement vers l'avant</p>
+</div>
+<div class="slide">
+    <img src="n_acc.jpg">
+    <p>• Innervation : Nerf accessoire (XI) + nerfs cervicaux C2-C3 (proprioceptif)</p>
+</div>
+<div class="slide">
+    <img src="vert_cerv.jpg">
+    <p>• Innervation : Nerf accessoire (XI) + nerfs cervicaux C2-C3 (proprioceptif)</p>
+</div>
+<div class="slide">
+    <img src="scm.jpg">
+    <p>• Muscles : Sterno-cléido-mastoïdien + muscles pré-vertébraux</p>
+</div>
+<div class="slide">
+    <img src="muscl_pre_vert.jpg">
+    <p>• Muscles : Sterno-cléido-mastoïdien + muscles pré-vertébraux</p>
+</div>
+<div class="slide">
+    <img src="scm_i.png">
+    <p>• Insertions : Sternum/clavicule → processus mastoïde temporal</p>
+</div>
+<div class="slide">
+    <img src="vert_cerv.jpg">
+    <p>• Articulations : Vertèbres cervicales, atlanto-occipitale</p>
+</div>
+<div class="slide">
+    <img src="atl_occ.jpg">
+    <p>• Articulations : Vertèbres cervicales, atlanto-occipitale</p>
+</div>
+<div class="slide">
+    <img src="sp_thyr.png">
+    <p>• Vascularisation : Artère thyroïdienne supérieure + artère occipitale</p>
+</div>
+<div class="slide">
+    <img src="art_occ.jpeg">
+    <p>• Vascularisation : Artère thyroïdienne supérieure + artère occipitale</p>
+</div>
+
+<div class="slide">
+    <img src="ext_t1.jpeg">
+    <p>EXTENSION DE LA TÊTE — mouvement vers l'arrière</p>
+</div>
+<div class="slide">
+    <img src="ram_post.jpeg">
+    <p>• Innervation : Rameaux postérieurs C2-C5</p>
+</div>
+<div class="slide">
+    <img src="vert_cerv.jpg">
+    <p>• Innervation : Rameaux postérieurs C2-C5</p>
+</div>
+<div class="slide">
+    <img src="trap_sup.jpeg">
+    <p>• Muscles : Trapèze supérieur (XI + C3-C4), splénius, semi-épineux</p>
+</div>
+<div class="slide">
+    <img src="splen_compl.jpeg">
+    <p>• Muscles : Trapèze supérieur (XI + C3-C4), splénius, semi-épineux(complexus)</p>
+</div>
+<div class="slide">
+    <img src="atl_occ.jpg">
+    <p>• Insertions : Occipital + apophyses épineuses cervicales</p>
+</div>
+<div class="slide">
+    <img src="apoph_epi.png">
+    <p>• Insertions : Occipital + apophyses épineuses cervicales</p>
+</div>
+<div class="slide">
+    <img src="art_occ.jpeg">
+    <p>• Vascularisation : Artère occipitale</p>
+</div>
+
+<div class="slide">
+    <img src="rot_t1.jpeg">
+    <p>ROTATION DE LA TÊTE — mouvement de pivot</p>
+</div>
+<div class="slide">
+    <img src="n_acc.jpg">
+    <p>• Innervation : Nerf accessoire (XI) + C2-C3</p>
+</div>
+<div class="slide">
+    <img src="vert_cerv.jpg">
+    <p>• Innervation : Nerf accessoire (XI) + C2-C3</p>
+</div>
+<div class="slide">
+    <img src="rot_t2.jpg">
+    <p>• Mécanisme : SCM controlatéral principal</p>
+</div>
+<div class="slide">
+    <img src="scm_g.jpeg">
+    <p>• Mécanisme : SCM controlatéral principal</p>
+</div>
+<div class="slide">
+    <img src="atl_ax.jpeg">
+    <p>• Articulation : Atlanto-axiale (C1-C2) — pivot essentiel</p>
+</div>
+<div class="slide">
+    <img src="art_occ.jpeg">
+    <p>• Vascularisation : Artère occipitale + thyroïdienne supérieure</p>
+</div>
+<div class="slide">
+    <img src="sp_thyr.png">
+    <p>• Vascularisation : Artère occipitale + thyroïdienne supérieure</p>
+</div>
+
+<div class="slide">
+    <img src="incl_lat.jpeg">
+    <p>INCLINAISON LATÉRALE — vers l'épaule</p>
+</div>
+<div class="slide">
+    <img src="vert_cerv.jpg">
+    <p>• Innervation : C2-C4 + nerf accessoire (XI)</p>
+</div>
+<div class="slide">
+    <img src="n_acc.jpg">
+    <p>• Innervation : C2-C4 + nerf accessoire (XI)</p>
+</div>
+<div class="slide">
+    <img src="scm2.jpeg">
+    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
+</div>
+<div class="slide">
+    <img src="trap.jpeg">
+    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
+</div>
+<div class="slide">
+    <img src="scal.jpeg">
+    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
+</div>
+<div class="slide">
+    <img src="muscl_vert_prof.jpeg">
+    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
+</div>
+<div class="slide">
+    <img src="art_intvert.jpg">
+    <p>• Articulations : Intervertébrales cervicales</p>
+</div>
+<div class="slide">
+    <img src="art_cerv.jpeg">
+    <p>• Vascularisation : Artère vertébrale + branches thyroïdiennes sup.</p>
+</div>
+<div class="slide">
+    <img src="branch_thyr.png">
+    <p>• Vascularisation : Artère vertébrale + branches thyroïdiennes sup.</p>
+</div>
+
+<div class="slide">
+    <img src="circum.jpeg">
+    <p>CIRCUMDUCTION — mouvement circulaire combiné</p>
+</div>
+<div class="slide">
+    <img src="circum1.jpeg">
+    <p>CIRCUMDUCTION — mouvement circulaire combiné</p>
+</div>
+<div class="slide">
+    <img src="muscl_ner.jpeg">
+    <p>• Coordination : Tous les nerfs et muscles cervicaux</p>
+</div>
+
+<!-- ======================================== -->
+<!-- GROUPE 2 : MÂCHOIRE ET MASTICATION -->
+<!-- ======================================== -->
+<div class="slide">
+    <img src="muscl_mast.jpg">
+    <p>GROUPE 2 : MÂCHOIRE ET MASTICATION</p>
+</div>
+<div class="slide">
+    <img src="ouv_bou.jpeg">
+    <p>OUVERTURE DE LA BOUCHE</p>
+</div>
+<div class="slide">
+    <img src="muscl_sus_hyo.jpeg">
+    <p>• Muscles : Sus-hyoïdiens (digastrique)</p>
+</div>
+<div class="slide">
+    <img src="muscl_digas.jpeg">
+    <p>• Muscles : Sus-hyoïdiens (digastrique)</p>
+</div>
+<div class="slide">
+    <img src="ner_max_man.jpg">
+    <p>• Innervation digastrique : V3 (digastrique antérieur) + VII (digastrique postérieur)</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpg">
+    <p>• Innervation digastrique : V3 (digastrique antérieur) + VII (digastrique postérieur)</p>
+</div>
+<div class="slide">
+    <img src="art_temp_man.jpeg">
+    <p>• Articulation : Temporo-mandibulaire</p>
+</div>
+<div class="slide">
+    <img src="foss_glen_cond_mand.png">
+    <p>• Articulation : Temporo-mandibulaire</p>
+</div>
+<div class="slide">
+    <img src="art_max.jpg">
+    <p>• Vascularisation : Artère maxillaire</p>
+</div>
+
+<div class="slide">
+    <img src="ferm_bou.png">
+    <p>FERMETURE/ÉLÉVATION MANDIBULAIRE</p>
+</div>
+<div class="slide">
+    <img src="mass_temp_ptery_med.jpeg">
+    <p>• Muscles : Masséter, temporal, ptérygoïdien médial</p>
+</div>
+<div class="slide">
+    <img src="ner_man_max.jpg">
+    <p>• Innervation : Nerf mandibulaire (V3)</p>
+</div>
+<div class="slide">
+    <img src="art_temp_man.jpeg">
+    <p>• Les muscles : Masséter, temporal, ptérygoïdien médial agissent puissamment sur l'articulation temporo-mandibulaire </p>
+</div>
+<div class="slide">
+    <img src="art_max.jpeg">
+    <p>• Vascularisation : Artère maxillaire</p>
+</div>
+
+<div class="slide">
+    <img src="propulsion.jpg">
+    <p>PROPULSION MANDIBULAIRE (avant)</p>
+</div>
+<div class="slide">
+    <img src="ptery_lat.jpeg">
+    <p>• Muscles : Ptérygoïdiens latéraux</p>
+</div>
+<div class="slide">
+    <img src="ner_man_max.jpg">
+    <p>• Innervation : V3</p>
+</div>
+<div class="slide">
+    <img src="art_max.jpeg">
+    <p>• Vascularisation : Artère maxillaire</p>
+</div>
+
+<div class="slide">
+    <img src="retropul.jpeg">
+    <p>RÉTROPULSION (arrière)</p>
+</div>
+<div class="slide">
+    <img src="temp_mass.png">
+    <p>• Muscles : Temporal postérieur + faisceaux masséter</p>
+</div>
+<div class="slide">
+    <img src="ner_max_man.jpg">
+    <p>• Innervation : V3</p>
+</div>
+
+
+<div class="slide">
+    <img src="lat_man.jpg">
+    <p>LATÉRALITÉ MANDIBULAIRE: DIDUCTION (mastication)</p>
+</div>
+<div class="slide">
+    <img src="ptery_lat.jpeg">
+    <p>• Mécanisme : Contraction alternée ptérygoïdiens latéraux</p>
+</div>
+
+
+<!-- =============================== -->
+<!-- GROUPE 3 : PAUPIÈRES -->
+<!-- =============================== -->
+<div class="slide">
+    <img src="paup.jpeg">
+    <p>GROUPE 3 : PAUPIÈRES</p>
+</div>
+<div class="slide">
+    <img src="elev_paup.jpeg">
+    <p>ÉLÉVATION PAUPIÈRE SUPÉRIEURE</p>
+</div>
+<div class="slide">
+    <img src="muscl_rel_paup.jpeg">
+    <p>• Muscle : Releveur de la paupière supérieure</p>
+</div>
+<div class="slide">
+    <img src="ner_ocu.jpeg">
+    <p>• Innervation : Nerf oculomoteur (III)</p>
+</div>
+<div class="slide">
+    <img src="tar_paup.jpeg">
+    <p>• Insertion : Tarse paupière supérieure</p>
+</div>
+<div class="slide">
+    <img src="fent_palp.jpg">
+    <p>• Muscle : Releveur de la paupière supérieure, agit sur l'ouverture de la fente palpébrale</p>
+</div>
+<div class="slide">
+    <img src="art_oph.jpg">
+    <p>• Vascularisation : Artère ophtalmique</p>
+</div>
+
+<div class="slide">
+    <img src="ferm_paup.jpeg">
+    <p>FERMETURE DES PAUPIÈRES</p>
+</div>
+<div class="slide">
+    <img src="muscl_orb.jpeg">
+    <p>• Muscle : Orbiculaire de l'œil</p>
+</div>
+<div class="slide">
+    <img src="ner_fac_2.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="clign_paup.jpeg">
+    <p>• Action : Clignement, fermeture complète</p>
+</div>
+
+<!-- =============================== -->
+<!-- GROUPE 4 : SOURCILS -->
+<!-- =============================== -->
+<div class="slide">
+    <img src="sourc.jpeg">
+    <p>GROUPE 4 : SOURCILS</p>
+</div>
+<div class="slide">
+    <img src="elev_paup.jpeg">
+    <p>ÉLÉVATION DES SOURCILS</p>
+</div>
+<div class="slide">
+    <img src="muscl_front.jpeg">
+    <p>• Muscle : Frontal (occipito-frontal)</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="rid_hor.jpg">
+    <p>• Effet : Rides horizontales au front</p>
+</div>
+<div class="slide">
+    <img src="art_temp_sup.jpeg">
+    <p>• Vascularisation : Artère temporale superficielle</p>
+</div>
+
+<div class="slide">
+    <img src="fron_sourc.jpeg">
+    <p>FRONCEMENT DES SOURCILS</p>
+</div>
+<div class="slide">
+    <img src="muscl_proc_corr.jpeg">
+    <p>• Muscles : Corrugateurs</p>
+</div>
+<div class="slide">
+    <img src="ner_fac_2.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="fron_sourc_2.jpeg">
+    <p>• Effet : Rides verticales, rapprochement sourcils</p>
+</div>
+
+<!-- =============================== -->
+<!-- GROUPE 5 : NEZ -->
+<!-- =============================== -->
+<div class="slide">
+    <img src="nez.jpeg">
+    <p>GROUPE 5 : NEZ</p>
+</div>
+<div class="slide">
+    <img src="fronc_nez.jpeg">
+    <p>FRONCEMENT DU NEZ</p>
+</div>
+<div class="slide">
+    <img src="muscl_proc.jpeg">
+    <p>• Muscle : Pyramidal (procerus)</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="rid_trans.jpeg">
+    <p>• Effet : Rides transversales racine nez</p>
+</div>
+
+<div class="slide">
+    <img src="nez_elarg.jpeg">
+    <p>ÉLARGISSEMENT DES NARINES</p>
+</div>
+<div class="slide">
+    <img src="muscls_nez.jpeg">
+    <p>• Muscle : Dilatateur des narines</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="insp_prof.png">
+    <p>• Rôle : Inspiration profonde</p>
+</div>
+
+<div class="slide">
+    <img src="nar_retre.jpg">
+    <p>RESSERREMENT DES NARINES</p>
+</div>
+<div class="slide">
+    <img src="compr_nar.jpeg">
+    <p>• Muscle : Compresseur des narines ou Transverse du nez</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+
+<!-- =============================== -->
+<!-- GROUPE 6 : OREILLES -->
+<!-- =============================== -->
+<div class="slide">
+    <img src="oreille.jpeg">
+    <p>GROUPE 6 : OREILLES</p>
+</div>
+<div class="slide">
+    <img src="elev_or.jpeg">
+    <p>ÉLÉVATION DE L'OREILLE</p>
+</div>
+<div class="slide">
+    <img src="muscl_aur_sup.jpeg">
+    <p>• Muscle : Auriculaire supérieur</p>
+</div>
+<div class="slide">
+    <img src="ner_fac_2.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+
+<div class="slide">
+    <img src="or_av.jpg">
+    <p>MOUVEMENT ANTÉRIEUR</p>
+</div>
+<div class="slide">
+    <img src="muscl_aur_ant.jpeg">
+    <p>• Muscle : Auriculaire antérieur</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="or_ar.jpg">
+    <p>MOUVEMENT POSTÉRIEUR</p>
+</div>
+<div class="slide">
+    <img src="muscl_aur_post.jpeg">
+    <p>• Muscle : Auriculaire postérieur</p>
+</div>
+<div class="slide">
+    <img src="ner_fac_2.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<!-- =============================== -->
+<!-- GROUPE 7 : LANGUE -->
+<!-- =============================== -->
+<div class="slide">
+    <img src="muscl_lang.png">
+    <p>GROUPE 7 : LANGUE</p>
+</div>
+<div class="slide">
+    <img src="protr_lang.jpeg">
+    <p>PROTRUSION DE LA LANGUE (avant)</p>
+</div>
+<div class="slide">
+    <img src="muscl_gen_gloss.jpeg">
+    <p>• Muscle : Génio-glosse</p>
+</div>
+<div class="slide">
+    <img src="ner_hyp_gloss.jpeg">
+    <p>• Innervation : Nerf hypoglosse (XII)</p>
+</div>
+<div class="slide">
+    <img src="epi_ment_sup.jpeg">
+    <p>• Insertion : Apophyse géniale mandibule (Épine mentonnière supérieure) → langue</p>
+</div>
+
+<div class="slide">
+    <img src="retrac_lang.jpeg">
+    <p>RÉTRACTION DE LA LANGUE (arrière)</p>
+</div>
+<div class="slide">
+    <img src="muscl_styl.jpeg">
+    <p>• Muscle : Stylo-glosse</p>
+</div>
+<div class="slide">
+    <img src="ner_hyp_gloss.jpeg">
+    <p>• Innervation : Nerf hypoglosse (XII)</p>
+</div>
+
+<div class="slide">
+    <img src="lat_lang.jpeg">
+    <p>MOUVEMENTS LATÉRAUX</p>
+</div>
+<div class="slide">
+    <img src="ts_muscl_gloss.png">
+    <p>• Muscles : Génio-glosse + hyo-glosse + stylo-glosse (unilatéraux)</p>
+</div>
+<div class="slide">
+    <img src="ner_hyp_gloss.jpeg">
+    <p>• Innervation : Nerf hypoglosse (XII)</p>
+</div>
+<div class="slide">
+    <img src="art_ling.jpeg">
+    <p>• Vascularisation : Artère linguale (carotide externe)</p>
+</div>
+
+<!-- ================================== -->
+<!-- GROUPE 8 : PHARYNX ET LARYNX -->
+<!-- ================================== -->
+<div class="slide">
+    <img src="phar.jpeg">
+    <p>GROUPE 8 : PHARYNX ET LARYNX</p>
+</div>
+<div class="slide">
+    <img src="deglut.jpg">
+    <p>ÉLÉVATION DU PHARYNX (déglutition)</p>
+</div>
+<div class="slide">
+    <img src="muscl_sty_phar.jpeg">
+    <p>• Muscle : Stylo-pharyngien</p>
+</div>
+<div class="slide">
+    <img src="ner_gloss_phar.jpg">
+    <p>• Innervation : Nerf glossopharyngien (IX)</p>
+</div>
+
+<div class="slide">
+    <img src="ab_lar.webp">
+    <p>ABAISSEMENT DU LARYNX</p>
+</div>
+<div class="slide">
+    <img src="muscl_infra_hyo.jpeg">
+    <p>• Muscles : Infra-hyoïdiens</p>
+</div>
+<div class="slide">
+    <img src="ans_cer.png">
+    <p>• Innervation : Ansa cervicalis (C1-C3)</p>
+</div>
+
+<div class="slide">
+    <img src="elev_lar.jpg">
+    <p>ÉLÉVATION DU LARYNX</p>
+</div>
+<div class="slide">
+    <img src="muscl_sus_hyo.jpeg">
+    <p>• Muscles : Sus-hyoïdiens</p>
+</div>
+<div class="slide">
+    <img src="ts_ner_cran.jpg">
+    <p>• Innervation complexe : VII + V3 + C1 via XII</p>
+</div>
+
+<!-- ================================== -->
+<!-- GROUPE 9 : MIMIQUE FACIALE -->
+<!-- ================================== -->
+<div class="slide">
+    <img src="visage.jpeg">
+    <p>GROUPE 9 : MIMIQUE FACIALE</p>
+</div>
+<div class="slide">
+    <img src="sourire.jpeg">
+    <p>SOURIRE</p>
+</div>
+<div class="slide">
+    <img src="muscl_zygom_maj.jpeg">
+    <p>• Muscle : Zygomatique majeur</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="sourire.jpeg">
+    <p>• Action : Commissure lèvres ↑ + latérale</p>
+</div>
+
+<div class="slide">
+    <img src="lev_depr.jpeg">
+    <p>FRONCEMENT DE LA BOUCHE</p>
+</div>
+<div class="slide">
+    <img src="muscl_ab_bou.jpg">
+    <p>• Muscle : Triangulaire (dépresseur lèvre inférieure)</p>
+</div>
+<div class="slide">
+    <img src="ner_fac.jpg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<div class="slide">
+    <img src="gonfl_jou.jpeg">
+    <p>GONFLEMENT DES JOUES (souffler)</p>
+</div>
+<div class="slide">
+    <img src="muscl_bucci.jpeg">
+    <p>• Muscle : Buccinateur</p>
+</div>
+<div class="slide">
+    <img src="ner_fac_2.jpeg">
+    <p>• Innervation : Nerf facial (VII)</p>
+</div>
+<!-- ======================== -->
+<!-- CONCLUSION -->
+<!-- ======================== -->
+<div class="slide">
+    <img src="sys_ner_t.jpeg">
+    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
+</div>
+<div class="slide">
+    <img src="sys_mus_t.jpeg">
+    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
+</div>
+<div class="slide">
+    <img src="sys_sq_t.jpeg">
+    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
+</div>
+<div class="slide">
+    <img src="sys_vas_t.jpeg">
+    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
+</div>
+
+<!-- ======================== -->
+<!-- QCM (images de synthèse) -->
+<!-- ======================== -->
+<div class="slide">
+    <img src="q1.jpg">
+    <p>QCM 1 — Rotation controlatérale de la tête</p>
+</div>
+<div class="slide">
+    <img src="r1.jpg">
+    <p>QCM 1 — Rotation controlatérale de la tête</p>
+</div>
+<div class="slide">
+    <img src="q2.jpg">
+    <p>QCM 2 — Insertion SCM</p>
+</div>
+<div class="slide">
+    <img src="r2.jpg">
+    <p>QCM 2 — Insertion SCM</p>
+</div>
+<div class="slide">
+    <img src="q3.jpg">
+    <p>QCM 3 — Élévation paupière</p>
+</div>
+<div class="slide">
+    <img src="r3.jpg">
+    <p>QCM 3 — Élévation paupière</p>
+</div>
+<div class="slide">
+    <img src="q4.jpg">
+    <p>QCM 4 — Vascularisation mastication</p>
+</div>
+<div class="slide">
+    <img src="r4.jpg">
+    <p>QCM 4 — Vascularisation mastication</p>
+</div>
+<div class="slide">
+    <img src="q5.jpg">
+    <p>QCM 5 — Protrusion langue</p>
+</div>
+<div class="slide">
+    <img src="r5.jpg">
+    <p>QCM 5 — Protrusion langue</p>
+</div>
+<div class="slide">
+    <img src="q6.jpg">
+    <p>QCM 6 — Articulation rotation tête</p>
+</div>
+<div class="slide">
+    <img src="r6.jpg">
+    <p>QCM 6 — Articulation rotation tête</p>
+</div>
+<div class="slide">
+    <img src="q7.jpg">
+    <p>QCM 7 — Fermeture paupières</p>
+</div>
+<div class="slide">
+    <img src="r7.jpg">
+    <p>QCM 7 — Fermeture paupières</p>
+</div>
+<div class="slide">
+    <img src="q8.jpg">
+    <p>QCM 8 — Fermeture bouche</p>
+</div>
+<div class="slide">
+    <img src="r8.jpg">
+    <p>QCM 8 — Fermeture bouche</p>
+</div>
+<div class="slide">
+    <img src="q9.jpg">
+    <p>QCM 9 — Vascularisation trapèze</p>
+</div>
+<div class="slide">
+    <img src="r9.jpg">
+    <p>QCM 9 — Vascularisation trapèze</p>
+</div>
+<div class="slide">
+    <img src="q10.jpg">
+    <p>QCM 10 — Nerf mimique</p>
+</div>
+<div class="slide">
+    <img src="r10.jpg">
+    <p>QCM 10 — Nerf mimique</p>
+</div>
+<div class="slide">
+    <img src="q11.jpg">
+    <p>QCM 11 — Froncement sourcils</p>
+</div>
+<div class="slide">
+    <img src="r11.jpg">
+    <p>QCM 11 — Froncement sourcils</p>
+</div>
+<div class="slide">
+    <img src="q12.jpg">
+    <p>QCM 12 — Vascularisation langue</p>
+</div>
+<div class="slide">
+    <img src="r12.jpg">
+    <p>QCM 12 — Vascularisation langue</p>
+</div>
+<div class="slide">
+    <img src="q13.jpg">
+    <p>QCM 13 — Élargissement narines</p>
+</div>
+<div class="slide">
+    <img src="r13.jpg">
+    <p>QCM 13 — Élargissement narines</p>
+</div>
+<div class="slide">
+    <img src="q14.jpg">
+    <p>QCM 14 — Innervation génio-glosse</p>
+</div>
+<div class="slide">
+    <img src="r14.jpg">
+    <p>QCM 14 — Innervation génio-glosse</p>
+</div>
+<div class="slide">
+    <img src="q15.jpg">
+    <p>QCM 15 — Ptérygoïdiens latéraux</p>
+</div>
+<div class="slide">
+    <img src="r15.jpg">
+    <p>QCM 15 — Ptérygoïdiens latéraux</p>
+</div>
+
+<!-- ======================== -->
+<!-- ÉLÉMENTS D'INTERFACE -->
+<!-- ======================== -->
+<div id="progress">
+    <div id="progress-bar"></div>
+    <button id="restart">🔁 Recommencer</button>
+</div>
+<div id="status">Prêt</div>
+<div id="slide-counter">Slide 1/160</div>
+</div>
+
+<button id="play">▶ Lancer le cours</button>
+
+<script>
+    alert("Astuce: Mettez le défilement en pause ⏸️ pour examiner🔍 les images.\nProfitez bien de ce cours !🙂");
+/* =========================
+   ÉLÉMENTS DOM
+========================= */
+const audio = document.getElementById("audio");
+const audio2 = document.getElementById("audio2");
+const slides = document.querySelectorAll(".slide");
+const playButton = document.getElementById("play");
+const restartButton = document.getElementById("restart");
+const progressBar = document.getElementById("progress-bar");
+const statusElement = document.getElementById("status");
+const slideCounter = document.getElementById("slide-counter");
+const container = document.getElementById("container");
+
+/* =========================
+   TIMELINE (ms) - IDENTIQUE
+========================= */
+const timeline = [
+    10000, 11000, 12000, 
+    
+    5000, 5000, 6000, 5000, 5000, 3000, 6000, 3000, 4000, 5000, 3000,
+    5000, 3000, 5000, 5000, 9000, 3000, 3000, 4000, 
+    3000, 9000, 4000, 2000, 4000, 8000, 4000,2000,
+    3000, 4000, 3000, 2000, 2000,2000, 4000, 3000, 4000, 4000, 
+    3000, 3000, 3000, 
+    //43
+    
+    6000, 2000, 3000, 2000, 4000, 4000, 3000, 7000,5000, 
+    6000, 6000, 6000, 5000, 3000,5000, 4000, 3000,4000,
+    3000, 5000, 5000, 5000, 8000,
+    //66
+    
+    3000, 3000, 5000,6000,4000,4000, 3000,
+    2000, 4000, 3000, 5000,    
+    //77
+    
+    3000, 2000, 4000, 4000, 3500, 4000,     
+    3000, 3000, 3000, 3000, 
+    
+    3000, 3000, 3000, 3000, 4000, 3000, 3000,
+    4000, 3000, 3000, 3000, 3000, 3000, 2000, 3000, 
+    3000, 4000, 3000, 3000, 2000, 3000, 3000,3000, //110
+    3000, 3000, 5000, 6000, 
+    3000,3000, 3000, 
+    4000, 6000,3000,7000, //121
+    
+    4000, 3500, 3000, 4500,
+    2000, 3500, 4900, 
+    2500,3000,19500, 
+    //131
+        
+    4000,3000,3000,4000,3000,
+    2000, 6000, 3000, 3000,3000,3000,
+    
+    6000,1500,1500,20000,
+    
+    20000, 3000, 
+    14000, 4000,
+    15000, 4500, 
+    14000, 3500, 
+    14000, 3500, 
+    17500, 4200, 
+    15000, 3500,
+    15500, 3000, 
+    15000, 3500, 
+    13000, 3500,
+    13000, 3500, 
+    
+    15000, 4000, 
+    15000, 4000, 
+    15000, 4000, 
+];
+
+/* =========================
+   PRÉ-CALCUL DES TEMPS
+========================= */
+const cumulativeTimeline = [];
+timeline.reduce((acc, val, i) => {
+    cumulativeTimeline[i] = acc;
+    return acc + val;
+}, 0);
+
+/* =========================
+   ÉTAT
+========================= */
+let isPlaying = false;
+let currentSlide = 0;
+
+/* =========================
+   SLIDES
+========================= */
+function goToSlide(index) {
+    if (index < 0 || index >= slides.length) return;
+
+    slides.forEach(s => s.classList.remove("active"));
+    slides[index].classList.add("active");
+    slides[index].scrollIntoView({ behavior: "smooth", block: "center" });
+
+    currentSlide = index;
+    slideCounter.textContent = `Slide ${index + 1}/${slides.length}`;
+}
+
+function jumpToSlide(index) {
+    if (index < 0 || index >= slides.length) return;
+
+    goToSlide(index);
+    audio.currentTime = cumulativeTimeline[index] / 1000;
+    audio2.currentTime = cumulativeTimeline[index] / 1000; // Synchroniser le 2e audio
+}
+
+/* =========================
+   SYNCHRO AUDIO → SLIDES
+========================= */
+function updateSlideFromAudio() {
+    if (!isPlaying) return;
+
+    const currentMs = audio.currentTime * 1000;
+    let index = 0;
+
+    for (let i = 0; i < cumulativeTimeline.length; i++) {
+        if (currentMs >= cumulativeTimeline[i]) {
+            index = i;
+        }
+    }
+
+    if (index !== currentSlide) {
+        goToSlide(index);
+    }
+
+    requestAnimationFrame(updateSlideFromAudio);
+}
+
+/* =========================
+   PROGRESSION
+========================= */
+function updateProgress() {
+    if (!isPlaying || !audio.duration) return;
+
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = `${progress}%`;
+
+    if (audio.currentTime < audio.duration) {
+        requestAnimationFrame(updateProgress);
+    }
+}
+
+/* =========================
+   LECTURE - MODIFIÉE POUR 2 AUDIOS
+========================= */
+function startPresentation(fromStart = false) {
+    if (isPlaying) return;
+
+    if (fromStart) {
+        audio.currentTime = 0;
+        audio2.currentTime = 0;  // Important : synchroniser les deux
+        goToSlide(0);
+    }
+
+    isPlaying = true;
+    playButton.textContent = "⏸ Pause";
+    statusElement.textContent = "En cours...";
+
+    // Lancer les deux audios simultanément
+    audio.play();
+    audio2.play();
+    audio2.volume = 0.9;
+    audio.volume = 1;
+    updateSlideFromAudio();
+    updateProgress();
+}
+
+function stopPresentation() {
+    isPlaying = false;
+    audio.pause();
+    audio2.pause();  // Mettre en pause le second audio aussi
+    playButton.textContent = "▶ Reprendre";
+    statusElement.textContent = "En pause";
+}
+
+/* =========================
+   BOUTONS
+========================= */
+playButton.onclick = () => {
+    isPlaying ? stopPresentation() : startPresentation(false);
+};
+
+restartButton.onclick = () => {
+    stopPresentation();
+    startPresentation(true);
+};
+
+/* =========================
+   SYNC MAIN TENUE SI DÉCALAGE
+========================= */
+// Si l'utilisateur déplace manuellement le curseur
+audio.addEventListener("seeked", () => {
+    if (isPlaying) {
+        audio2.currentTime = audio.currentTime;
+    }
+});
+
+audio2.addEventListener("seeked", () => {
+    if (isPlaying) {
+        audio.currentTime = audio2.currentTime;
+    }
+});
+
+// Si un audio se termine, arrêter l'autre aussi
+audio.addEventListener("ended", () => {
+    if (isPlaying) {
+        stopPresentation();
+        statusElement.textContent = "Terminé";
+        progressBar.style.width = "100%";
+    }
+});
+
+audio2.addEventListener("ended", () => {
+    if (isPlaying) {
+        stopPresentation();
+        statusElement.textContent = "Terminé";
+        progressBar.style.width = "100%";
+    }
+});
+
+/* =========================
+   CLAVIER
+========================= */
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") jumpToSlide(currentSlide + 1);
+    if (e.key === "ArrowLeft") jumpToSlide(currentSlide - 1);
+    if (e.key === " ") {
+        e.preventDefault();
+        isPlaying ? stopPresentation() : startPresentation(false);
+    }
+});
+
+/* =========================
+   SCROLL MANUEL
+========================= */
+container.addEventListener("scroll", () => {
+    if (isPlaying) return;
+
+    const containerRect = container.getBoundingClientRect();
+    let maxVisible = 0;
+    let index = currentSlide;
+
+    slides.forEach((slide, i) => {
+        const rect = slide.getBoundingClientRect();
+        const visible = Math.min(rect.bottom, containerRect.bottom) -
+                        Math.max(rect.top, containerRect.top);
+        if (visible > maxVisible) {
+            maxVisible = visible;
+            index = i;
+        }
+    });
+
+    if (index !== currentSlide) {
+        jumpToSlide(index);
+    }
+});
+
+/* =========================
+   INIT
+========================= */
+goToSlide(0);
+</script>
+
+</body>
+</html>
