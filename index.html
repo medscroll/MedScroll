@@ -1,1191 +1,2005 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anatomie tête et cou</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours de Santé Communautaire - UPC Médecine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b0b0b;
-    color: #fff;
-    overflow: hidden;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c7a4d 0%, #145c38 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-#container {
-    height: 100vh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-}
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
 
-.slide {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    scroll-snap-align: start;
-    opacity: 0.7;
-    transition: opacity 0.5s;
-}
+        .progress-bar {
+            height: 6px;
+            background: #f0f0f0;
+            width: 100%;
+        }
 
-.slide.active {
-    opacity: 1;
-}
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c7a4d, #145c38);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
 
-.slide img {
-    max-width: 90%;
-    max-height: 70vh;
-    object-fit: contain;
-    background: white;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
+        .header {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.slide p {
-    margin-top: 15px;
-    font-size: 1.2em;
-    text-align: center;
-    max-width: 800px;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-}
+        .header h1 {
+            color: #145c38;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
 
-#play {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 14px 22px;
-    border-radius: 40px;
-    border: none;
-    font-size: 1em;
-    background: #1db954;
-    color: #000;
-    cursor: pointer;
-    font-weight: bold;
-    z-index: 100;
-    transition: transform 0.2s, background 0.2s;
-}
+        .badge {
+            background: #2c7a4d;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
 
-#play:hover {
-    background: #1ed760;
-    transform: scale(1.05);
-}
+        .content {
+            padding: 30px;
+            min-height: 500px;
+            max-height: 70vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+        }
 
-#play:active {
-    transform: scale(0.98);
-}
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            margin-bottom: 30px;
+        }
 
-#progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #333;
-    z-index: 101;
-}
+        .slide.active {
+            display: block;
+        }
 
-#progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #1db954;
-    transition: width 0.1s;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-#status {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    z-index: 100;
-}
+        .slide-title {
+            color: #145c38;
+            font-size: 2em;
+            margin-bottom: 25px;
+            font-weight: 700;
+            border-left: 5px solid #2c7a4d;
+            padding-left: 20px;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
 
-#slide-counter {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    z-index: 100;
-}
-</style>
+        .slide-content {
+            color: #2c3e50;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .slide-content h3 {
+            color: #2c7a4d;
+            margin: 20px 0 10px 0;
+            font-size: 1.4em;
+        }
+
+        .slide-content h4 {
+            color: #145c38;
+            margin: 15px 0 8px 0;
+            font-size: 1.2em;
+        }
+
+        .slide-content p {
+            margin: 15px 0;
+        }
+
+        .slide-content ul, .slide-content ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .slide-content li {
+            margin: 8px 0;
+        }
+
+        .definition {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #2c7a4d;
+        }
+
+        .formula {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            text-align: center;
+            border-left: 4px solid #145c38;
+        }
+
+        .example {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .table th, .table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #145c38;
+        }
+
+        .table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid #dee2e6;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #e9ecef;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .play-btn {
+            background: linear-gradient(90deg, #2c7a4d, #145c38);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 122, 77, 0.4);
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 122, 77, 0.5);
+        }
+
+        .stop-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .stop-btn:hover {
+            background: #c82333;
+        }
+
+        .counter {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .scroll-progress {
+            height: 4px;
+            background: linear-gradient(90deg, #2c7a4d, #145c38);
+            width: 0%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+        }
+
+        .section-marker {
+            border-bottom: 1px solid #e9ecef;
+            margin: 20px 0;
+            padding-bottom: 10px;
+            color: #2c7a4d;
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+                max-height: 60vh;
+            }
+            
+            .slide-title {
+                font-size: 1.6em;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<audio id="audio" src="tête.mp3"></audio>
-<audio id="audio2" src="fond.m4a"></audio>
-<!-- ==================== -->
-<!-- INTRODUCTION GÉNÉRALE -->
-<!-- ==================== -->
-<div class="slide">
-    <img src="muscl_ner.jpeg">
-    <p>
-        ANATOMIE FONCTIONNELLE DE LA TÊTE ET DU COU<br>
-        Exploration détaillée des mouvements, de l’impulsion nerveuse
-        jusqu’à l’action musculaire.
-    </p>
-</div>
-
-<div class="slide">
-    <img src="ts_sys.jpg">
-    <p>
-        Chaque mouvement est analysé selon :
-        l’innervation, les muscles impliqués,
-        les os concernés et la vascularisation.
-    </p>
-</div>
-<div class="slide active">
-    <img src="pst_anat.png">
-    <p>Position anatomique de référence — tête droite, regard horizontal, membres supérieurs pendants</p>
-</div>
-
-<!-- =========================================== -->
-<!-- GROUPE 1 : MOUVEMENTS GÉNÉRAUX DE LA TÊTE -->
-<!-- =========================================== -->
-<div class="slide active">
-    <img src="mvts_gen.jpeg">
-    <p> GROUPE 1 : MOUVEMENTS GÉNÉRAUX DE LA TÊTE ET DU COU</p>
-</div>
-<div class="slide">
-    <img src="flex_t1.jpeg">
-    <p>FLEXION DE LA TÊTE — mouvement vers l'avant</p>
-</div>
-<div class="slide">
-    <img src="n_acc.jpg">
-    <p>• Innervation : Nerf accessoire (XI) + nerfs cervicaux C2-C3 (proprioceptif)</p>
-</div>
-<div class="slide">
-    <img src="vert_cerv.jpg">
-    <p>• Innervation : Nerf accessoire (XI) + nerfs cervicaux C2-C3 (proprioceptif)</p>
-</div>
-<div class="slide">
-    <img src="scm.jpg">
-    <p>• Muscles : Sterno-cléido-mastoïdien + muscles pré-vertébraux</p>
-</div>
-<div class="slide">
-    <img src="muscl_pre_vert.jpg">
-    <p>• Muscles : Sterno-cléido-mastoïdien + muscles pré-vertébraux</p>
-</div>
-<div class="slide">
-    <img src="scm_i.png">
-    <p>• Insertions : Sternum/clavicule → processus mastoïde temporal</p>
-</div>
-<div class="slide">
-    <img src="vert_cerv.jpg">
-    <p>• Articulations : Vertèbres cervicales, atlanto-occipitale</p>
-</div>
-<div class="slide">
-    <img src="atl_occ.jpg">
-    <p>• Articulations : Vertèbres cervicales, atlanto-occipitale</p>
-</div>
-<div class="slide">
-    <img src="sp_thyr.png">
-    <p>• Vascularisation : Artère thyroïdienne supérieure + artère occipitale</p>
-</div>
-<div class="slide">
-    <img src="art_occ.jpeg">
-    <p>• Vascularisation : Artère thyroïdienne supérieure + artère occipitale</p>
-</div>
-
-<div class="slide">
-    <img src="ext_t1.jpeg">
-    <p>EXTENSION DE LA TÊTE — mouvement vers l'arrière</p>
-</div>
-<div class="slide">
-    <img src="ram_post.jpeg">
-    <p>• Innervation : Rameaux postérieurs C2-C5</p>
-</div>
-<div class="slide">
-    <img src="vert_cerv.jpg">
-    <p>• Innervation : Rameaux postérieurs C2-C5</p>
-</div>
-<div class="slide">
-    <img src="trap_sup.jpeg">
-    <p>• Muscles : Trapèze supérieur (XI + C3-C4), splénius, semi-épineux</p>
-</div>
-<div class="slide">
-    <img src="splen_compl.jpeg">
-    <p>• Muscles : Trapèze supérieur (XI + C3-C4), splénius, semi-épineux(complexus)</p>
-</div>
-<div class="slide">
-    <img src="atl_occ.jpg">
-    <p>• Insertions : Occipital + apophyses épineuses cervicales</p>
-</div>
-<div class="slide">
-    <img src="apoph_epi.png">
-    <p>• Insertions : Occipital + apophyses épineuses cervicales</p>
-</div>
-<div class="slide">
-    <img src="art_occ.jpeg">
-    <p>• Vascularisation : Artère occipitale</p>
-</div>
-
-<div class="slide">
-    <img src="rot_t1.jpeg">
-    <p>ROTATION DE LA TÊTE — mouvement de pivot</p>
-</div>
-<div class="slide">
-    <img src="n_acc.jpg">
-    <p>• Innervation : Nerf accessoire (XI) + C2-C3</p>
-</div>
-<div class="slide">
-    <img src="vert_cerv.jpg">
-    <p>• Innervation : Nerf accessoire (XI) + C2-C3</p>
-</div>
-<div class="slide">
-    <img src="rot_t2.jpg">
-    <p>• Mécanisme : SCM controlatéral principal</p>
-</div>
-<div class="slide">
-    <img src="scm_g.jpeg">
-    <p>• Mécanisme : SCM controlatéral principal</p>
-</div>
-<div class="slide">
-    <img src="atl_ax.jpeg">
-    <p>• Articulation : Atlanto-axiale (C1-C2) — pivot essentiel</p>
-</div>
-<div class="slide">
-    <img src="art_occ.jpeg">
-    <p>• Vascularisation : Artère occipitale + thyroïdienne supérieure</p>
-</div>
-<div class="slide">
-    <img src="sp_thyr.png">
-    <p>• Vascularisation : Artère occipitale + thyroïdienne supérieure</p>
-</div>
-
-<div class="slide">
-    <img src="incl_lat.jpeg">
-    <p>INCLINAISON LATÉRALE — vers l'épaule</p>
-</div>
-<div class="slide">
-    <img src="vert_cerv.jpg">
-    <p>• Innervation : C2-C4 + nerf accessoire (XI)</p>
-</div>
-<div class="slide">
-    <img src="n_acc.jpg">
-    <p>• Innervation : C2-C4 + nerf accessoire (XI)</p>
-</div>
-<div class="slide">
-    <img src="scm2.jpeg">
-    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
-</div>
-<div class="slide">
-    <img src="trap.jpeg">
-    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
-</div>
-<div class="slide">
-    <img src="scal.jpeg">
-    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
-</div>
-<div class="slide">
-    <img src="muscl_vert_prof.jpeg">
-    <p>• Muscles : SCM + trapèze + scalènes + vertébraux profonds</p>
-</div>
-<div class="slide">
-    <img src="art_intvert.jpg">
-    <p>• Articulations : Intervertébrales cervicales</p>
-</div>
-<div class="slide">
-    <img src="art_cerv.jpeg">
-    <p>• Vascularisation : Artère vertébrale + branches thyroïdiennes sup.</p>
-</div>
-<div class="slide">
-    <img src="branch_thyr.png">
-    <p>• Vascularisation : Artère vertébrale + branches thyroïdiennes sup.</p>
-</div>
-
-<div class="slide">
-    <img src="circum.jpeg">
-    <p>CIRCUMDUCTION — mouvement circulaire combiné</p>
-</div>
-<div class="slide">
-    <img src="circum1.jpeg">
-    <p>CIRCUMDUCTION — mouvement circulaire combiné</p>
-</div>
-<div class="slide">
-    <img src="muscl_ner.jpeg">
-    <p>• Coordination : Tous les nerfs et muscles cervicaux</p>
-</div>
-
-<!-- ======================================== -->
-<!-- GROUPE 2 : MÂCHOIRE ET MASTICATION -->
-<!-- ======================================== -->
-<div class="slide">
-    <img src="muscl_mast.jpg">
-    <p>GROUPE 2 : MÂCHOIRE ET MASTICATION</p>
-</div>
-<div class="slide">
-    <img src="ouv_bou.jpeg">
-    <p>OUVERTURE DE LA BOUCHE</p>
-</div>
-<div class="slide">
-    <img src="muscl_sus_hyo.jpeg">
-    <p>• Muscles : Sus-hyoïdiens (digastrique)</p>
-</div>
-<div class="slide">
-    <img src="muscl_digas.jpeg">
-    <p>• Muscles : Sus-hyoïdiens (digastrique)</p>
-</div>
-<div class="slide">
-    <img src="ner_max_man.jpg">
-    <p>• Innervation digastrique : V3 (digastrique antérieur) + VII (digastrique postérieur)</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpg">
-    <p>• Innervation digastrique : V3 (digastrique antérieur) + VII (digastrique postérieur)</p>
-</div>
-<div class="slide">
-    <img src="art_temp_man.jpeg">
-    <p>• Articulation : Temporo-mandibulaire</p>
-</div>
-<div class="slide">
-    <img src="foss_glen_cond_mand.png">
-    <p>• Articulation : Temporo-mandibulaire</p>
-</div>
-<div class="slide">
-    <img src="art_max.jpg">
-    <p>• Vascularisation : Artère maxillaire</p>
-</div>
-
-<div class="slide">
-    <img src="ferm_bou.png">
-    <p>FERMETURE/ÉLÉVATION MANDIBULAIRE</p>
-</div>
-<div class="slide">
-    <img src="mass_temp_ptery_med.jpeg">
-    <p>• Muscles : Masséter, temporal, ptérygoïdien médial</p>
-</div>
-<div class="slide">
-    <img src="ner_man_max.jpg">
-    <p>• Innervation : Nerf mandibulaire (V3)</p>
-</div>
-<div class="slide">
-    <img src="art_temp_man.jpeg">
-    <p>• Les muscles : Masséter, temporal, ptérygoïdien médial agissent puissamment sur l'articulation temporo-mandibulaire </p>
-</div>
-<div class="slide">
-    <img src="art_max.jpeg">
-    <p>• Vascularisation : Artère maxillaire</p>
-</div>
-
-<div class="slide">
-    <img src="propulsion.jpg">
-    <p>PROPULSION MANDIBULAIRE (avant)</p>
-</div>
-<div class="slide">
-    <img src="ptery_lat.jpeg">
-    <p>• Muscles : Ptérygoïdiens latéraux</p>
-</div>
-<div class="slide">
-    <img src="ner_man_max.jpg">
-    <p>• Innervation : V3</p>
-</div>
-<div class="slide">
-    <img src="art_max.jpeg">
-    <p>• Vascularisation : Artère maxillaire</p>
-</div>
-
-<div class="slide">
-    <img src="retropul.jpeg">
-    <p>RÉTROPULSION (arrière)</p>
-</div>
-<div class="slide">
-    <img src="temp_mass.png">
-    <p>• Muscles : Temporal postérieur + faisceaux masséter</p>
-</div>
-<div class="slide">
-    <img src="ner_max_man.jpg">
-    <p>• Innervation : V3</p>
-</div>
-
-
-<div class="slide">
-    <img src="lat_man.jpg">
-    <p>LATÉRALITÉ MANDIBULAIRE: DIDUCTION (mastication)</p>
-</div>
-<div class="slide">
-    <img src="ptery_lat.jpeg">
-    <p>• Mécanisme : Contraction alternée ptérygoïdiens latéraux</p>
-</div>
-
-
-<!-- =============================== -->
-<!-- GROUPE 3 : PAUPIÈRES -->
-<!-- =============================== -->
-<div class="slide">
-    <img src="paup.jpeg">
-    <p>GROUPE 3 : PAUPIÈRES</p>
-</div>
-<div class="slide">
-    <img src="elev_paup.jpeg">
-    <p>ÉLÉVATION PAUPIÈRE SUPÉRIEURE</p>
-</div>
-<div class="slide">
-    <img src="muscl_rel_paup.jpeg">
-    <p>• Muscle : Releveur de la paupière supérieure</p>
-</div>
-<div class="slide">
-    <img src="ner_ocu.jpeg">
-    <p>• Innervation : Nerf oculomoteur (III)</p>
-</div>
-<div class="slide">
-    <img src="tar_paup.jpeg">
-    <p>• Insertion : Tarse paupière supérieure</p>
-</div>
-<div class="slide">
-    <img src="fent_palp.jpg">
-    <p>• Muscle : Releveur de la paupière supérieure, agit sur l'ouverture de la fente palpébrale</p>
-</div>
-<div class="slide">
-    <img src="art_oph.jpg">
-    <p>• Vascularisation : Artère ophtalmique</p>
-</div>
-
-<div class="slide">
-    <img src="ferm_paup.jpeg">
-    <p>FERMETURE DES PAUPIÈRES</p>
-</div>
-<div class="slide">
-    <img src="muscl_orb.jpeg">
-    <p>• Muscle : Orbiculaire de l'œil</p>
-</div>
-<div class="slide">
-    <img src="ner_fac_2.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="clign_paup.jpeg">
-    <p>• Action : Clignement, fermeture complète</p>
-</div>
-
-<!-- =============================== -->
-<!-- GROUPE 4 : SOURCILS -->
-<!-- =============================== -->
-<div class="slide">
-    <img src="sourc.jpeg">
-    <p>GROUPE 4 : SOURCILS</p>
-</div>
-<div class="slide">
-    <img src="elev_paup.jpeg">
-    <p>ÉLÉVATION DES SOURCILS</p>
-</div>
-<div class="slide">
-    <img src="muscl_front.jpeg">
-    <p>• Muscle : Frontal (occipito-frontal)</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="rid_hor.jpg">
-    <p>• Effet : Rides horizontales au front</p>
-</div>
-<div class="slide">
-    <img src="art_temp_sup.jpeg">
-    <p>• Vascularisation : Artère temporale superficielle</p>
-</div>
-
-<div class="slide">
-    <img src="fron_sourc.jpeg">
-    <p>FRONCEMENT DES SOURCILS</p>
-</div>
-<div class="slide">
-    <img src="muscl_proc_corr.jpeg">
-    <p>• Muscles : Corrugateurs</p>
-</div>
-<div class="slide">
-    <img src="ner_fac_2.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="fron_sourc_2.jpeg">
-    <p>• Effet : Rides verticales, rapprochement sourcils</p>
-</div>
-
-<!-- =============================== -->
-<!-- GROUPE 5 : NEZ -->
-<!-- =============================== -->
-<div class="slide">
-    <img src="nez.jpeg">
-    <p>GROUPE 5 : NEZ</p>
-</div>
-<div class="slide">
-    <img src="fronc_nez.jpeg">
-    <p>FRONCEMENT DU NEZ</p>
-</div>
-<div class="slide">
-    <img src="muscl_proc.jpeg">
-    <p>• Muscle : Pyramidal (procerus)</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="rid_trans.jpeg">
-    <p>• Effet : Rides transversales racine nez</p>
-</div>
-
-<div class="slide">
-    <img src="nez_elarg.jpeg">
-    <p>ÉLARGISSEMENT DES NARINES</p>
-</div>
-<div class="slide">
-    <img src="muscls_nez.jpeg">
-    <p>• Muscle : Dilatateur des narines</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="insp_prof.png">
-    <p>• Rôle : Inspiration profonde</p>
-</div>
-
-<div class="slide">
-    <img src="nar_retre.jpg">
-    <p>RESSERREMENT DES NARINES</p>
-</div>
-<div class="slide">
-    <img src="compr_nar.jpeg">
-    <p>• Muscle : Compresseur des narines ou Transverse du nez</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-
-<!-- =============================== -->
-<!-- GROUPE 6 : OREILLES -->
-<!-- =============================== -->
-<div class="slide">
-    <img src="oreille.jpeg">
-    <p>GROUPE 6 : OREILLES</p>
-</div>
-<div class="slide">
-    <img src="elev_or.jpeg">
-    <p>ÉLÉVATION DE L'OREILLE</p>
-</div>
-<div class="slide">
-    <img src="muscl_aur_sup.jpeg">
-    <p>• Muscle : Auriculaire supérieur</p>
-</div>
-<div class="slide">
-    <img src="ner_fac_2.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-
-<div class="slide">
-    <img src="or_av.jpg">
-    <p>MOUVEMENT ANTÉRIEUR</p>
-</div>
-<div class="slide">
-    <img src="muscl_aur_ant.jpeg">
-    <p>• Muscle : Auriculaire antérieur</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="or_ar.jpg">
-    <p>MOUVEMENT POSTÉRIEUR</p>
-</div>
-<div class="slide">
-    <img src="muscl_aur_post.jpeg">
-    <p>• Muscle : Auriculaire postérieur</p>
-</div>
-<div class="slide">
-    <img src="ner_fac_2.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<!-- =============================== -->
-<!-- GROUPE 7 : LANGUE -->
-<!-- =============================== -->
-<div class="slide">
-    <img src="muscl_lang.png">
-    <p>GROUPE 7 : LANGUE</p>
-</div>
-<div class="slide">
-    <img src="protr_lang.jpeg">
-    <p>PROTRUSION DE LA LANGUE (avant)</p>
-</div>
-<div class="slide">
-    <img src="muscl_gen_gloss.jpeg">
-    <p>• Muscle : Génio-glosse</p>
-</div>
-<div class="slide">
-    <img src="ner_hyp_gloss.jpeg">
-    <p>• Innervation : Nerf hypoglosse (XII)</p>
-</div>
-<div class="slide">
-    <img src="epi_ment_sup.jpeg">
-    <p>• Insertion : Apophyse géniale mandibule (Épine mentonnière supérieure) → langue</p>
-</div>
-
-<div class="slide">
-    <img src="retrac_lang.jpeg">
-    <p>RÉTRACTION DE LA LANGUE (arrière)</p>
-</div>
-<div class="slide">
-    <img src="muscl_styl.jpeg">
-    <p>• Muscle : Stylo-glosse</p>
-</div>
-<div class="slide">
-    <img src="ner_hyp_gloss.jpeg">
-    <p>• Innervation : Nerf hypoglosse (XII)</p>
-</div>
-
-<div class="slide">
-    <img src="lat_lang.jpeg">
-    <p>MOUVEMENTS LATÉRAUX</p>
-</div>
-<div class="slide">
-    <img src="ts_muscl_gloss.png">
-    <p>• Muscles : Génio-glosse + hyo-glosse + stylo-glosse (unilatéraux)</p>
-</div>
-<div class="slide">
-    <img src="ner_hyp_gloss.jpeg">
-    <p>• Innervation : Nerf hypoglosse (XII)</p>
-</div>
-<div class="slide">
-    <img src="art_ling.jpeg">
-    <p>• Vascularisation : Artère linguale (carotide externe)</p>
-</div>
-
-<!-- ================================== -->
-<!-- GROUPE 8 : PHARYNX ET LARYNX -->
-<!-- ================================== -->
-<div class="slide">
-    <img src="phar.jpeg">
-    <p>GROUPE 8 : PHARYNX ET LARYNX</p>
-</div>
-<div class="slide">
-    <img src="deglut.jpg">
-    <p>ÉLÉVATION DU PHARYNX (déglutition)</p>
-</div>
-<div class="slide">
-    <img src="muscl_sty_phar.jpeg">
-    <p>• Muscle : Stylo-pharyngien</p>
-</div>
-<div class="slide">
-    <img src="ner_gloss_phar.jpg">
-    <p>• Innervation : Nerf glossopharyngien (IX)</p>
-</div>
-
-<div class="slide">
-    <img src="ab_lar.webp">
-    <p>ABAISSEMENT DU LARYNX</p>
-</div>
-<div class="slide">
-    <img src="muscl_infra_hyo.jpeg">
-    <p>• Muscles : Infra-hyoïdiens</p>
-</div>
-<div class="slide">
-    <img src="ans_cer.png">
-    <p>• Innervation : Ansa cervicalis (C1-C3)</p>
-</div>
-
-<div class="slide">
-    <img src="elev_lar.jpg">
-    <p>ÉLÉVATION DU LARYNX</p>
-</div>
-<div class="slide">
-    <img src="muscl_sus_hyo.jpeg">
-    <p>• Muscles : Sus-hyoïdiens</p>
-</div>
-<div class="slide">
-    <img src="ts_ner_cran.jpg">
-    <p>• Innervation complexe : VII + V3 + C1 via XII</p>
-</div>
-
-<!-- ================================== -->
-<!-- GROUPE 9 : MIMIQUE FACIALE -->
-<!-- ================================== -->
-<div class="slide">
-    <img src="visage.jpeg">
-    <p>GROUPE 9 : MIMIQUE FACIALE</p>
-</div>
-<div class="slide">
-    <img src="sourire.jpeg">
-    <p>SOURIRE</p>
-</div>
-<div class="slide">
-    <img src="muscl_zygom_maj.jpeg">
-    <p>• Muscle : Zygomatique majeur</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="sourire.jpeg">
-    <p>• Action : Commissure lèvres ↑ + latérale</p>
-</div>
-
-<div class="slide">
-    <img src="lev_depr.jpeg">
-    <p>FRONCEMENT DE LA BOUCHE</p>
-</div>
-<div class="slide">
-    <img src="muscl_ab_bou.jpg">
-    <p>• Muscle : Triangulaire (dépresseur lèvre inférieure)</p>
-</div>
-<div class="slide">
-    <img src="ner_fac.jpg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<div class="slide">
-    <img src="gonfl_jou.jpeg">
-    <p>GONFLEMENT DES JOUES (souffler)</p>
-</div>
-<div class="slide">
-    <img src="muscl_bucci.jpeg">
-    <p>• Muscle : Buccinateur</p>
-</div>
-<div class="slide">
-    <img src="ner_fac_2.jpeg">
-    <p>• Innervation : Nerf facial (VII)</p>
-</div>
-<!-- ======================== -->
-<!-- CONCLUSION -->
-<!-- ======================== -->
-<div class="slide">
-    <img src="sys_ner_t.jpeg">
-    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
-</div>
-<div class="slide">
-    <img src="sys_mus_t.jpeg">
-    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
-</div>
-<div class="slide">
-    <img src="sys_sq_t.jpeg">
-    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
-</div>
-<div class="slide">
-    <img src="sys_vas_t.jpeg">
-    <p>INTÉGRATION DES SYSTÈMES — coordination nerveuse, musculaire, squelettique, vasculaire</p>
-</div>
-
-<!-- ======================== -->
-<!-- QCM (images de synthèse) -->
-<!-- ======================== -->
-<div class="slide">
-    <img src="q1.jpg">
-    <p>QCM 1 — Rotation controlatérale de la tête</p>
-</div>
-<div class="slide">
-    <img src="r1.jpg">
-    <p>QCM 1 — Rotation controlatérale de la tête</p>
-</div>
-<div class="slide">
-    <img src="q2.jpg">
-    <p>QCM 2 — Insertion SCM</p>
-</div>
-<div class="slide">
-    <img src="r2.jpg">
-    <p>QCM 2 — Insertion SCM</p>
-</div>
-<div class="slide">
-    <img src="q3.jpg">
-    <p>QCM 3 — Élévation paupière</p>
-</div>
-<div class="slide">
-    <img src="r3.jpg">
-    <p>QCM 3 — Élévation paupière</p>
-</div>
-<div class="slide">
-    <img src="q4.jpg">
-    <p>QCM 4 — Vascularisation mastication</p>
-</div>
-<div class="slide">
-    <img src="r4.jpg">
-    <p>QCM 4 — Vascularisation mastication</p>
-</div>
-<div class="slide">
-    <img src="q5.jpg">
-    <p>QCM 5 — Protrusion langue</p>
-</div>
-<div class="slide">
-    <img src="r5.jpg">
-    <p>QCM 5 — Protrusion langue</p>
-</div>
-<div class="slide">
-    <img src="q6.jpg">
-    <p>QCM 6 — Articulation rotation tête</p>
-</div>
-<div class="slide">
-    <img src="r6.jpg">
-    <p>QCM 6 — Articulation rotation tête</p>
-</div>
-<div class="slide">
-    <img src="q7.jpg">
-    <p>QCM 7 — Fermeture paupières</p>
-</div>
-<div class="slide">
-    <img src="r7.jpg">
-    <p>QCM 7 — Fermeture paupières</p>
-</div>
-<div class="slide">
-    <img src="q8.jpg">
-    <p>QCM 8 — Fermeture bouche</p>
-</div>
-<div class="slide">
-    <img src="r8.jpg">
-    <p>QCM 8 — Fermeture bouche</p>
-</div>
-<div class="slide">
-    <img src="q9.jpg">
-    <p>QCM 9 — Vascularisation trapèze</p>
-</div>
-<div class="slide">
-    <img src="r9.jpg">
-    <p>QCM 9 — Vascularisation trapèze</p>
-</div>
-<div class="slide">
-    <img src="q10.jpg">
-    <p>QCM 10 — Nerf mimique</p>
-</div>
-<div class="slide">
-    <img src="r10.jpg">
-    <p>QCM 10 — Nerf mimique</p>
-</div>
-<div class="slide">
-    <img src="q11.jpg">
-    <p>QCM 11 — Froncement sourcils</p>
-</div>
-<div class="slide">
-    <img src="r11.jpg">
-    <p>QCM 11 — Froncement sourcils</p>
-</div>
-<div class="slide">
-    <img src="q12.jpg">
-    <p>QCM 12 — Vascularisation langue</p>
-</div>
-<div class="slide">
-    <img src="r12.jpg">
-    <p>QCM 12 — Vascularisation langue</p>
-</div>
-<div class="slide">
-    <img src="q13.jpg">
-    <p>QCM 13 — Élargissement narines</p>
-</div>
-<div class="slide">
-    <img src="r13.jpg">
-    <p>QCM 13 — Élargissement narines</p>
-</div>
-<div class="slide">
-    <img src="q14.jpg">
-    <p>QCM 14 — Innervation génio-glosse</p>
-</div>
-<div class="slide">
-    <img src="r14.jpg">
-    <p>QCM 14 — Innervation génio-glosse</p>
-</div>
-<div class="slide">
-    <img src="q15.jpg">
-    <p>QCM 15 — Ptérygoïdiens latéraux</p>
-</div>
-<div class="slide">
-    <img src="r15.jpg">
-    <p>QCM 15 — Ptérygoïdiens latéraux</p>
-</div>
-
-<!-- ======================== -->
-<!-- ÉLÉMENTS D'INTERFACE -->
-<!-- ======================== -->
-<div id="progress">
-    <div id="progress-bar"></div>
-    <button id="restart">🔁 Recommencer</button>
-</div>
-<div id="status">Prêt</div>
-<div id="slide-counter">Slide 1/160</div>
-</div>
-
-<button id="play">▶ Lancer le cours</button>
-
-<script>
-    alert("Astuce: Mettez le défilement en pause ⏸️ pour examiner🔍 les images.\nProfitez bien de ce cours !🙂");
-/* =========================
-   ÉLÉMENTS DOM
-========================= */
-const audio = document.getElementById("audio");
-const audio2 = document.getElementById("audio2");
-const slides = document.querySelectorAll(".slide");
-const playButton = document.getElementById("play");
-const restartButton = document.getElementById("restart");
-const progressBar = document.getElementById("progress-bar");
-const statusElement = document.getElementById("status");
-const slideCounter = document.getElementById("slide-counter");
-const container = document.getElementById("container");
-
-/* =========================
-   TIMELINE (ms) - IDENTIQUE
-========================= */
-const timeline = [
-    10000, 11000, 12000, 
+    <div class="status" id="status">Mode navigation</div>
     
-    5000, 5000, 6000, 5000, 5000, 3000, 6000, 3000, 4000, 5000, 3000,
-    5000, 3000, 5000, 5000, 9000, 3000, 3000, 4000, 
-    3000, 9000, 4000, 2000, 4000, 8000, 4000,2000,
-    3000, 4000, 3000, 2000, 2000,2000, 4000, 3000, 4000, 4000, 
-    3000, 3000, 3000, 
-    //43
-    
-    6000, 2000, 3000, 2000, 4000, 4000, 3000, 7000,5000, 
-    6000, 6000, 6000, 5000, 3000,5000, 4000, 3000,4000,
-    3000, 5000, 5000, 5000, 8000,
-    //66
-    
-    3000, 3000, 5000,6000,4000,4000, 3000,
-    2000, 4000, 3000, 5000,    
-    //77
-    
-    3000, 2000, 4000, 4000, 3500, 4000,     
-    3000, 3000, 3000, 3000, 
-    
-    3000, 3000, 3000, 3000, 4000, 3000, 3000,
-    4000, 3000, 3000, 3000, 3000, 3000, 2000, 3000, 
-    3000, 4000, 3000, 3000, 2000, 3000, 3000,3000, //110
-    3000, 3000, 5000, 6000, 
-    3000,3000, 3000, 
-    4000, 6000,3000,7000, //121
-    
-    4000, 3500, 3000, 4500,
-    2000, 3500, 4900, 
-    2500,3000,19500, 
-    //131
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
         
-    4000,3000,3000,4000,3000,
-    2000, 6000, 3000, 3000,3000,3000,
-    
-    6000,1500,1500,20000,
-    
-    20000, 3000, 
-    14000, 4000,
-    15000, 4500, 
-    14000, 3500, 
-    14000, 3500, 
-    17500, 4200, 
-    15000, 3500,
-    15500, 3000, 
-    15000, 3500, 
-    13000, 3500,
-    13000, 3500, 
-    
-    15000, 4000, 
-    15000, 4000, 
-    15000, 4000, 
-];
+        <div class="header">
+            <h1>🏥 Santé Communautaire - B1 Médecine</h1>
+            <span class="badge" id="slideCounter">1/62</span>
+        </div>
 
-/* =========================
-   PRÉ-CALCUL DES TEMPS
-========================= */
-const cumulativeTimeline = [];
-timeline.reduce((acc, val, i) => {
-    cumulativeTimeline[i] = acc;
-    return acc + val;
-}, 0);
+        <div class="content" id="content">
+            <!-- Les slides seront injectées ici par JavaScript -->
+        </div>
 
-/* =========================
-   ÉTAT
-========================= */
-let isPlaying = false;
-let currentSlide = 0;
+        <div class="controls">
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="prevSlide()" id="prevBtn">← Précédent</button>
+                <button class="nav-btn" onclick="nextSlide()" id="nextBtn">Suivant →</button>
+            </div>
+            <button class="play-btn" onclick="toggleAutoPlay()" id="playBtn">▶ Lecture automatique</button>
+        </div>
+    </div>
 
-/* =========================
-   SLIDES
-========================= */
-function goToSlide(index) {
-    if (index < 0 || index >= slides.length) return;
+    <audio id="audioPlayer" src="sante_communautaire.mp3" controls style="display: none;"></audio>
+    <audio id="backgroundMusic" loop style="display: none;"></audio>
 
-    slides.forEach(s => s.classList.remove("active"));
-    slides[index].classList.add("active");
-    slides[index].scrollIntoView({ behavior: "smooth", block: "center" });
+    <script>
+        alert("Astuce: Mettez le cours  en pause ⏸️ pour relire 📄 les écrits.\nProfitez bien de ce cours !🙂");
+        // Données du cours - Slides basées sur le contenu des PDFs
+        const slides = [
+            {
+                title: "Introduction à la Santé Communautaire",
+                content: `
+                    <div class="definition">
+                        <strong>Définition :</strong> La santé communautaire est un processus qui implique que les membres d'une communauté travaillent ensemble pour identifier et aborder leurs problèmes de santé, exprimer leurs besoins et participer activement à la mise en place de solutions.
+                    </div>
+                    <p>Il s'agit de l'application des méthodes de la santé publique pour promouvoir la santé au sein d'une communauté, en travaillant sur les aspects sanitaires de manière collective et en réseau.</p>
+                    <p>Les agents de santé communautaires jouent un rôle clé en fournissant éducation, prévention, soins et suivi à domicile.</p>
+                `
+            },
+            {
+                title: "Définition Approfondie",
+                content: `
+                    <div class="definition">
+                        <p>Approche locale et participative de la santé qui implique activement les membres d'une communauté dans l'analyse, la planification, la mise en œuvre et l'évaluation de leurs propres problèmes de santé.</p>
+                    </div>
+                    <p>Elle se distingue de la santé publique en plaçant l'<strong>autonomisation (empowerment)</strong> de la population au cœur de sa démarche.</p>
+                `
+            },
+            {
+                title: "Principes Clés de la Santé Communautaire",
+                content: `
+                    <h3>1. Participation communautaire</h3>
+                    <p>Les individus et les familles s'impliquent dans la prise en charge de leur santé et de leur bien-être.</p>
+                    
+                    <h3>2. Approche collective</h3>
+                    <p>La santé est abordée de manière collective, en tenant compte des interrelations entre les membres de la communauté.</p>
+                    
+                    <h3>3. Travail en réseau</h3>
+                    <p>Collaborations à différents niveaux, horizontalement (entre pairs) ou verticalement (entre différentes couches professionnelles et sociales).</p>
+                    
+                    <h3>4. Co-construction</h3>
+                    <p>Les solutions et les programmes de santé sont élaborés conjointement avec la communauté elle-même.</p>
+                `
+            },
+            {
+                title: "Structure du Système Sanitaire en RDC (1/3)",
+                content: `
+                    <h3>Éléments du système de santé dans la Zone de Santé :</h3>
+                    <ul>
+                        <li><strong>Les individus, familles et communautés</strong></li>
+                        <li><strong>La structure de santé de premier contact :</strong> le Centre de Santé (CS)</li>
+                        <li><strong>Le niveau de référence :</strong> l'Hôpital Général de Référence (HGR)</li>
+                    </ul>
+                    
+                    <h3>Structures de santé d'une Zone de Santé :</h3>
+                    <ul>
+                        <li><strong>Structures obligatoires :</strong> CS et HGR</li>
+                        <li><strong>Structures facultatives :</strong> Centre de Santé Rural (CSR) et Poste de Santé (PS)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Structure du Système Sanitaire en RDC (2/3)",
+                content: `
+                    <h3>Les organes de gestion de la Zone de Santé :</h3>
+                    <ul>
+                        <li><strong>L'Equipe Cadre de la Zone de Santé (ECZS)</strong></li>
+                        <li><strong>Le Comité de Gestion de la Zone de Santé</strong></li>
+                        <li><strong>Le Conseil d'Administration</strong></li>
+                    </ul>
+                    
+                    <h3>L'Equipe Cadre de la Zone de Santé</h3>
+                    <p>Structure du leadership intégrée au niveau de la Zone de santé. Composition : 5 personnes</p>
+                    <ul>
+                        <li>Médecin Chef de Zone (MCZ)</li>
+                        <li>Médecin Directeur de l'HGR</li>
+                        <li>Directeur de Nursing (DN)</li>
+                        <li>Agent de Gestion (AG)</li>
+                        <li>Inspecteur de Santé de la ZS (IS)</li>
+                    </ul>
+                    <p>Les 4 fonctions intégrées : médicale, de nursing, administrative et d'appui logistique.</p>
+                `
+            },
+            {
+                title: "Structure du Système Sanitaire en RDC (3/3)",
+                content: `
+                    <h3>Comité de Gestion de la ZS</h3>
+                    <p><strong>Membres :</strong></p>
+                    <ul>
+                        <li>Membres de l'Equipe Cadre de la ZS</li>
+                        <li>Un représentant de l'autorité locale</li>
+                        <li>Un représentant des Infirmiers Titulaires des CS</li>
+                        <li>Un représentant des COSA</li>
+                        <li>Partenaires privés ou confessionnels</li>
+                    </ul>
+                    <p>Présidé par le Médecin Chef de Zone</p>
+                    <p><strong>Attributions :</strong> Gestion des ressources, préparation des dossiers pour le CA</p>
+                    
+                    <h3>Conseil d'Administration de la ZS</h3>
+                    <p>Présidé par le Chef de Division Provinciale de la Santé</p>
+                    <p><strong>Attributions :</strong> Approbation des plans, gestion des ressources, collaboration avec partenaires</p>
+                `
+            },
+            {
+                title: "Participation Communautaire",
+                content: `
+                    <div class="definition">
+                        <p><strong>Définition :</strong> Processus par lequel les personnes, individuellement ou en groupe, exercent leur droit de jouer un rôle actif et direct dans le développement des services de santé appropriés, en garantissant les conditions d'une amélioration durable de la vie et en soutenant l'octroi aux communautés du pouvoir dans le développement global.</p>
+                    </div>
+                    
+                    <h3>Avantages :</h3>
+                    <ul>
+                        <li>Concevoir l'état de santé objectivement plutôt qu'avec fatalisme</li>
+                        <li>Inciter à la prise de mesures préventives</li>
+                        <li>Investir main d'œuvre, temps, argent dans la promotion de la santé</li>
+                        <li>Utiliser et entretenir les ouvrages construites</li>
+                        <li>Étendre les activités de soins à la périphérie</li>
+                        <li>Rendre efficace l'éducation sanitaire</li>
+                        <li>Promouvoir l'équité et l'autosuffisance communautaire</li>
+                    </ul>
+                    
+                    <h3>Niveaux de participation :</h3>
+                    <ul>
+                        <li>Participation marginale</li>
+                        <li>Participation active (substantielle)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "La Famille, Base de la Santé (1/3)",
+                content: `
+                    <div class="definition">
+                        <p>Dès le début de l'humanité, la vie et le développement des sociétés ont toujours reposé principalement sur la famille.</p>
+                    </div>
+                    
+                    <h3>Rôles fondamentaux de la famille :</h3>
+                    <ul>
+                        <li>Cellule de toute société</li>
+                        <li>Premier soutien affectif et social</li>
+                        <li>Premiers soins assurés en famille</li>
+                        <li>Principal lien de solidarité entre les individus</li>
+                        <li>Véhicule et transmission des valeurs</li>
+                    </ul>
+                    
+                    <h3>Obstacles à l'unité familiale :</h3>
+                    <ul>
+                        <li>Urbanisation rapide et anarchique</li>
+                        <li>Détérioration de l'environnement</li>
+                        <li>Migrations, guerres et conflits</li>
+                    </ul>
+                `
+            },
+            {
+                title: "La Famille, Base de la Santé (2/3)",
+                content: `
+                    <h3>La santé est fonction de :</h3>
+                    <ul>
+                        <li>L'environnement social et physique</li>
+                        <li>Habitudes et modes de vie de la famille</li>
+                        <li>Comportement sanitaire de ses membres</li>
+                    </ul>
+                    
+                    <h3>Qualité de vie familiale dépend de :</h3>
+                    <ul>
+                        <li>Conditions de logement</li>
+                        <li>Accès à l'eau potable</li>
+                        <li>Salubrité du milieu de vie</li>
+                        <li>Sécurité alimentaire</li>
+                        <li>Capacité à comprendre les conditions de santé</li>
+                        <li>Pouvoir faire appel aux services de santé</li>
+                    </ul>
+                `
+            },
+            {
+                title: "La Famille, Base de la Santé (3/3)",
+                content: `
+                    <div class="definition">
+                        <p>La mère est généralement le <strong>premier agent sanitaire</strong> de la famille. Son niveau d'éducation et d'instruction constitue la première condition de la santé familiale.</p>
+                    </div>
+                    
+                    <h3>Importance de l'éducation de la mère :</h3>
+                    <ul>
+                        <li>Poser des gestes utiles</li>
+                        <li>Reconnaître des signes d'aggravation</li>
+                        <li>Recourir à temps aux services de santé</li>
+                    </ul>
+                    
+                    <p>La perception de la santé et de la maladie dépend de la qualité des rapports familiaux.</p>
+                    <p>L'état de santé d'un individu est fonction de :</p>
+                    <ul>
+                        <li>Qualité du milieu familial</li>
+                        <li>Événements qui s'y produisent</li>
+                        <li>Santé des autres (IST, SIDA, TBC)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Famille et Soins Mère-Enfant (1/2)",
+                content: `
+                    <h3>1. Soins prénatals</h3>
+                    <ul>
+                        <li>Dépistage précoce de la grossesse</li>
+                        <li>Éducation pour la santé durant la grossesse</li>
+                        <li>Soins prénatals de base</li>
+                        <li>Détection des complications</li>
+                    </ul>
+                    
+                    <h3>2. Pratique de l'accouchement</h3>
+                    <ul>
+                        <li>Identification du début du travail</li>
+                        <li>Détection de risque au moment du travail</li>
+                        <li>Prise en charge du nouveau-né</li>
+                        <li>Soins de base au nouveau-né (allaitement, protection)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Famille et Soins Mère-Enfant (2/2)",
+                content: `
+                    <h3>3. Soins de base à l'enfant</h3>
+                    <ul>
+                        <li>Nutrition appropriée</li>
+                        <li>Consultation des enfants de moins de 5 ans</li>
+                        <li>Vaccination</li>
+                        <li>Hygiène de l'eau</li>
+                        <li>Garde d'enfant pour libérer la mère</li>
+                    </ul>
+                    
+                    <h3>4. Information sur contrôle de la fécondité</h3>
+                    <p>Santé de la reproduction influencée par les aînées et amies de la famille</p>
+                    
+                    <h3>Évolution des approches :</h3>
+                    <ul>
+                        <li><strong>Ancienne :</strong> schéma médecin-malade</li>
+                        <li><strong>Nouvelle :</strong> triangle thérapeutique (malade - soignant - famille)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Famille et Demande de Soins",
+                content: `
+                    <div class="definition">
+                        <p>Les besoins de santé des communautés sont constitués par les besoins de santé des familles.</p>
+                    </div>
+                    
+                    <p>Les besoins de santé des familles créent et justifient la demande des soins, y compris l'organisation des services.</p>
+                    
+                    <h3>La planification doit partir de la base :</h3>
+                    <ul>
+                        <li>Nature des besoins</li>
+                        <li>Nature des problèmes</li>
+                        <li>Nombre de bénéficiaires</li>
+                        <li>Tableau épidémiologique</li>
+                        <li>Perception et appréciation des besoins</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Famille Troublée",
+                content: `
+                    <div class="example">
+                        <p>La vie des familles, particulièrement des mères et des enfants, est profondément troublée par :</p>
+                        <ul>
+                            <li>Conflits ethniques</li>
+                            <li>Guerres entraînant des déplacements</li>
+                            <li>Situations périlleuses diverses</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Conséquences :</h3>
+                    <ul>
+                        <li>Séparation d'avec les autres membres de la famille</li>
+                        <li>Exposition accrue aux risques sanitaires</li>
+                        <li>Vulnérabilité psychologique et sociale</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Introduction à l'Hygiène du Milieu",
+                content: `
+                    <div class="definition">
+                        <p>L'hygiène de l'environnement cible les facteurs du milieu affectant le plus la santé des communautés.</p>
+                    </div>
+                    
+                    <h3>Facteurs clés :</h3>
+                    <ul>
+                        <li>Eau de boisson</li>
+                        <li>Déchets solides</li>
+                        <li>Déchets liquides</li>
+                        <li>Déchets infectieux</li>
+                        <li>Vecteurs de maladies</li>
+                        <li>Conditions de l'habitat</li>
+                    </ul>
+                    
+                    <div class="formula">
+                        <p><strong>Statistique clé :</strong> Plus de 75% des causes de consultation et d'hospitalisation en RDC sont imputables aux maladies liées à l'environnement.</p>
+                    </div>
+                `
+            },
+            {
+                title: "L'Eau Potable - Rôle Pathogène",
+                content: `
+                    <h3>L'eau peut être vecteur de :</h3>
+                    
+                    <table class="table">
+                        <tr>
+                            <th>Type de maladie</th>
+                            <th>Exemples</th>
+                        </tr>
+                        <tr>
+                            <td>Maladies virales</td>
+                            <td>Poliomyélite, hépatite virale type A</td>
+                        </tr>
+                        <tr>
+                            <td>Maladies bactériennes</td>
+                            <td>Choléra, fièvre typhoïde</td>
+                        </tr>
+                        <tr>
+                            <td>Maladies parasitaires</td>
+                            <td>Amibiase, ascaridiose</td>
+                        </tr>
+                        <tr>
+                            <td>Vecteurs de maladies</td>
+                            <td>Moustiques (paludisme)</td>
+                        </tr>
+                        <tr>
+                            <td>Hôtes intermédiaires</td>
+                            <td>Escargots (schistosomiase)</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: "Sources d'Eau",
+                content: `
+                    <h3>1. Eau de pluie</h3>
+                    <p>Propre à la consommation si bien collectée, mais souvent contaminée.</p>
+                    
+                    <h3>2. Eaux de surface</h3>
+                    <p>Rivières, fleuves, lacs, océans : impropres à la consommation car très polluées.</p>
+                    
+                    <h3>3. Eaux souterraines</h3>
+                    <p>Proviennent des nappes aquifères ou nappes phréatiques :</p>
+                    <ul>
+                        <li>Eaux au-dessus de la nappe phréatique : impropres</li>
+                        <li>Eaux en dessous : propres si non contaminées</li>
+                    </ul>
+                    <p>Donnent naissance aux sources (à gravité, artésiennes, à émergence).</p>
+                `
+            },
+            {
+                title: "Captage de l'Eau - Système Vertical (Puits)",
+                content: `
+                    <h3>Types de puits :</h3>
+                    <ul>
+                        <li><strong>Puits ordinaires :</strong> simple trou, diamètre ± 1 mètre</li>
+                        <li><strong>Puits foncés :</strong> diamètre ± 25 cm, profondeur 5-100 m</li>
+                        <li><strong>Puits forés :</strong> forés mécaniquement, diamètre réduit, très profonds</li>
+                    </ul>
+                    
+                    <h3>Critères d'un puits convenable :</h3>
+                    <ul>
+                        <li>Latrine la plus proche à ≥ 15 m en aval</li>
+                        <li>Parois cimentées contre infiltrations</li>
+                        <li>Extrémité supérieure cimentée</li>
+                        <li>Couvercle pour éviter eaux de ruissellement</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Qualités d'une Eau Potable",
+                content: `
+                    <h3>Qualités physiques :</h3>
+                    <p>Incolore, inodore, insipide et limpide (non trouble).</p>
+                    
+                    <h3>Qualités chimiques :</h3>
+                    <p>Substances d'alarme :</p>
+                    <ul>
+                        <li>Ammoniac : < 0,2 mg/L</li>
+                        <li>Nitrites : < 0,1 mg/L</li>
+                        <li>Matières organiques : < 0,2 mg/L</li>
+                    </ul>
+                    
+                    <p>Eau dure (mousse difficilement) :</p>
+                    <ul>
+                        <li>Sulfates : < 250 mg/L</li>
+                        <li>Calcium : < 125 mg/L</li>
+                        <li>Magnésium : < 125 mg/L</li>
+                    </ul>
+                    
+                    <p>Substances toxiques :</p>
+                    <ul>
+                        <li>Plomb : < 0,1 mg/L</li>
+                        <li>Arsenic : < 0,05 mg/L</li>
+                        <li>Cuivre : < 1 mg/L</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Qualités Bactériologiques de l'Eau",
+                content: `
+                    <h3>Eau traitée (100 ml) :</h3>
+                    <ul>
+                        <li>Ni germes pathogènes (E. coli)</li>
+                        <li>Ni germes saprophytes (coliformes)</li>
+                    </ul>
+                    
+                    <h3>Eau non traitée (pays en développement) :</h3>
+                    <p>On tolère 3 à 9 coliformes dans 10 ml.</p>
+                    
+                    <div class="formula">
+                        <p><strong>Règle d'or :</strong> La présence de coliformes indique une contamination fécale.</p>
+                    </div>
+                `
+            },
+            {
+                title: "Traitement Industriel de l'Eau",
+                content: `
+                    <h3>Procédés de traitement (REGIDESO) :</h3>
+                    <ol>
+                        <li><strong>Captage :</strong> barrage et pompes aspirantes</li>
+                        <li><strong>Aération :</strong> injection d'oxygène, chute d'eau, tourbillons</li>
+                        <li><strong>Floculation :</strong> ajout de sulfate d'alumine</li>
+                        <li><strong>Sédimentation :</strong> dépôt des flocons</li>
+                        <li><strong>Filtration :</strong> lit de sable ou matière synthétique</li>
+                        <li><strong>Désinfection :</strong> chlore (méthode de choix), UV, ozone</li>
+                    </ol>
+                    
+                    <p><strong>Ozone :</strong> très chère, action instantanée non rémanente.</p>
+                `
+            },
+            {
+                title: "Traitement de l'Eau à Domicile",
+                content: `
+                    <h3>Méthodes :</h3>
+                    
+                    <h4>1. Filtration</h4>
+                    <p>Filtres domestiques avec bougie en céramique à remplacer périodiquement.</p>
+                    
+                    <h4>2. Ébullition</h4>
+                    <p>Laisser bouillir 30 minutes à partir de l'ébullition, puis refroidir.</p>
+                    
+                    <h4>3. Désinfection chimique</h4>
+                    <ul>
+                        <li>Teinture d'iode : 3 gouttes/L</li>
+                        <li>Eau de javel : 3 gouttes/L</li>
+                        <li>Chlore en poudre (Watermaker) : 1 sachet/3L</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Les Déchets Solides - Définitions",
+                content: `
+                    <h3>Définitions :</h3>
+                    <ul>
+                        <li><strong>Déchet :</strong> résidu non utilisable selon l'intention première</li>
+                        <li><strong>Ordures :</strong> matières putrescibles végétales ou animales</li>
+                        <li><strong>Débris :</strong> déchets non putrescibles (combustibles ou non)</li>
+                        <li><strong>Cendres :</strong> résidus de combustion</li>
+                        <li><strong>Fumier :</strong> excréta d'animaux domestiques</li>
+                        <li><strong>Balayures :</strong> débris du nettoiement des voies publiques</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Importance de l'Évacuation des Déchets",
+                content: `
+                    <h3>Raisons hygiéniques :</h3>
+                    <ul>
+                        <li>Attirent les mouches, rats, chats, chiens</li>
+                        <li>Danger pour les petits enfants</li>
+                        <li>Transmission de maladies</li>
+                    </ul>
+                    
+                    <h3>Raisons esthétiques :</h3>
+                    <ul>
+                        <li>Odeurs nauséabondes</li>
+                        <li>Aspect inesthétique</li>
+                        <li>Répugnance</li>
+                    </ul>
+                    
+                    <h3>Quantités produites :</h3>
+                    <ul>
+                        <li><strong>Villes :</strong> 900g à 3kg/jour/personne</li>
+                        <li><strong>Campagne :</strong> 320g/jour/personne (220-340g)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Évacuation des Ordures Ménagères",
+                content: `
+                    <h3>Les 4 phases :</h3>
+                    <ol>
+                        <li><strong>Conditionnement à domicile :</strong> poubelles imperméables, résistantes, avec couvercle</li>
+                        <li><strong>Collecte :</strong> organisée par services publics, camions bennes</li>
+                        <li><strong>Transport vers la décharge finale</strong></li>
+                        <li><strong>Traitement final</strong></li>
+                    </ol>
+                    
+                    <h3>Options de traitement final :</h3>
+                    <ul>
+                        <li>Décharge ordinaire (non recommandé)</li>
+                        <li>Décharge dans cours d'eau (déconseillé)</li>
+                        <li>Décharge contrôlée</li>
+                        <li>Enfouissement</li>
+                        <li>Incinération</li>
+                        <li>Compostage</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Décharge Contrôlée et Compostage",
+                content: `
+                    <h3>Décharge contrôlée :</h3>
+                    <ul>
+                        <li>Tasser les déchets dans des tranchées préparées</li>
+                        <li>Recouvrir de terre chaque jour</li>
+                        <li>Nécessite engins lourds et terrain disponible</li>
+                    </ul>
+                    
+                    <h3>Compostage :</h3>
+                    <ul>
+                        <li>Transformation des déchets triés en compost</li>
+                        <li>Fumier pour l'agriculture</li>
+                    </ul>
+                    
+                    <h3>Incinération :</h3>
+                    <ul>
+                        <li>Combustion à très haute température (±1000°C)</li>
+                        <li>Procédé industriel</li>
+                    </ul>
+                    
+                    <h3>Enfouissement :</h3>
+                    <ul>
+                        <li>À l'échelle domestique</li>
+                        <li>Écarter les déchets non putrescibles (plastiques)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Les Déchets Liquides",
+                content: `
+                    <h3>Nature des déchets liquides :</h3>
+                    <ul>
+                        <li><strong>Eaux de ruissellement :</strong> pluie, lavage des rues (substances minérales)</li>
+                        <li><strong>Eaux de ménage :</strong> habitations, brasseries, abattoirs (substances organiques)</li>
+                        <li><strong>Eaux excrémentielles :</strong> urines et matières fécales (germes)</li>
+                    </ul>
+                    
+                    <h3>Quantités :</h3>
+                    <ul>
+                        <li>Matières fécales : 135-235g/jour/adulte</li>
+                        <li>Urines : 100-1300g/jour/adulte</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Évacuation des Déchets Liquides",
+                content: `
+                    <h3>Méthodes d'évacuation finale :</h3>
+                    <ul>
+                        <li><strong>Déversement dans cours d'eau :</strong> autoépuration par oxygène dissous</li>
+                        <li><strong>Bassin de stabilisation :</strong> destruction des germes pathogènes</li>
+                        <li><strong>Épandage :</strong> sur surface du sol (méthode inappropriée)</li>
+                    </ul>
+                    
+                    <h3>Épuration artificielle (3 étapes) :</h3>
+                    <ol>
+                        <li>Bassin de sédimentation</li>
+                        <li>Bassin de fermentation anaérobie</li>
+                        <li>Bassin d'épuration + désinfection</li>
+                    </ol>
+                `
+            },
+            {
+                title: "Normes des Eaux Usées Épurées",
+                content: `
+                    <h3>Critères de qualité :</h3>
+                    <ul>
+                        <li>Matières en suspension ≤ 30 mg/L (test centrifugation)</li>
+                        <li>Pas d'odeur putride après incubation 5 jours à 30°C</li>
+                        <li>Pas de substances toxiques pour la flore et la faune</li>
+                        <li>Demande Biologique en Oxygène (DBO) ≥ 40 mg/L après 5 jours à 18°C</li>
+                    </ul>
+                    
+                    <h3>En milieu rural :</h3>
+                    <p>Système individuel par épandage au sol ou trou à ordure.</p>
+                `
+            },
+            {
+                title: "Les Déchets Infectieux",
+                content: `
+                    <h3>Définition :</h3>
+                    <p>Déchets (solides ou liquides) contenant une quantité suffisante d'agents pathogènes pour entraîner une maladie infectieuse chez un hôte susceptible.</p>
+                    
+                    <h3>Types de déchets biomédicaux :</h3>
+                    <ul>
+                        <li>Déchets de laboratoire (microbiologie, anatomo-pathologie)</li>
+                        <li>Sang et autres sécrétions humaines</li>
+                        <li>Objets tranchants/contondants (aiguilles, seringues, lames)</li>
+                        <li>Déchets de patients contagieux</li>
+                        <li>Déchets des salles d'opération et d'accouchement</li>
+                        <li>Carcasses d'animaux contaminés et tissus humains</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Gestion des Déchets Infectieux",
+                content: `
+                    <h3>Étapes de gestion :</h3>
+                    <ol>
+                        <li><strong>Collecte :</strong> container plastique étanche dans container rigide</li>
+                        <li><strong>Transport :</strong> véhicule complètement fermé</li>
+                        <li><strong>Réfrigération :</strong> < 5°C pour déchets putrescibles</li>
+                        <li><strong>Traitement obligatoire</strong> avant élimination finale</li>
+                    </ol>
+                    
+                    <h3>Méthodes de traitement :</h3>
+                    <ul>
+                        <li><strong>Incinération :</strong> méthode de choix (1800°F)</li>
+                        <li><strong>Stérilisation à vapeur :</strong> autoclave</li>
+                        <li><strong>Stérilisation à gaz :</strong> oxyde d'éthylène (toxique)</li>
+                        <li><strong>Désinfection :</strong> eau de javel pour matériel réutilisable</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Hygiène de l'Habitat",
+                content: `
+                    <h3>Définition :</h3>
+                    <p>Assurer et promouvoir la santé physique, mentale et sociale de la population.</p>
+                    
+                    <h3>Conditions d'un habitat salubre :</h3>
+                    <ul>
+                        <li><strong>Besoins physiques :</strong> température, humidité, aération, éclairage, protection contre bruits</li>
+                        <li><strong>Besoins psychologiques :</strong> intimité, vie communautaire, propreté, esthétique</li>
+                        <li><strong>Protection contre contagion :</strong> eau potable, évacuation déchets, exclusion animaux nuisibles</li>
+                        <li><strong>Sécurité :</strong> constructions solides, protection incendie, intrusion</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Lutte Antivectorielle (1/2)",
+                content: `
+                    <h3>Définition :</h3>
+                    <p><strong>Vecteur :</strong> agent capable de transmettre une maladie d'un individu porteur à un individu réceptif.</p>
+                    
+                    <h3>Types de transmission :</h3>
+                    <ul>
+                        <li><strong>Mécanique :</strong> vecteur transporte les germes sur ses pattes, corps, ou les élimine avec déjections</li>
+                        <li><strong>Biologique :</strong> hôtes intermédiaires abritant les stades larvaires de parasites</li>
+                    </ul>
+                    
+                    <h3>Vecteurs ciblés :</h3>
+                    <p>Blattes, mouches, moustiques (anophèles, culex, aedes), phlébotomes, poux, puces, punaises, tiques.</p>
+                `
+            },
+            {
+                title: "Lutte Antivectorielle (2/2)",
+                content: `
+                    <h3>Méthodes de lutte :</h3>
+                    <ul>
+                        <li><strong>Prévention de la reproduction :</strong> assainissement de base</li>
+                        <li><strong>Prévention de la contamination :</strong> hygiène alimentaire, surveillance eau</li>
+                        <li><strong>Destruction des larves et adultes :</strong> chimique, biologique, mécanique</li>
+                        <li><strong>Méthodes environnementales :</strong> destruction des habitats</li>
+                        <li><strong>Protection individuelle :</strong> vêtements, répulsifs</li>
+                        <li><strong>Désinsectisation :</strong> par la température</li>
+                        <li><strong>Méthodes intégrées</strong></li>
+                    </ul>
+                `
+            },
+            {
+                title: "Hygiène Individuelle",
+                content: `
+                    <h3>Hygiène corporelle :</h3>
+                    <p>Fonctions de la peau : respiration, élimination, régulation thermique, protection, sensibilité.</p>
+                    <p>Nettoyage au savon : action chimique, mécanique et antiseptique.</p>
+                    
+                    <h3>Hygiène vestimentaire :</h3>
+                    <p>Propriétés des tissus :</p>
+                    <ul>
+                        <li>Protection contre le froid</li>
+                        <li>Protection contre la chaleur</li>
+                        <li>Protection contre l'eau</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Introduction à la Démographie",
+                content: `
+                    <div class="definition">
+                        <p><strong>Démographie :</strong> étude des populations humaines quantitativement et qualitativement.</p>
+                    </div>
+                    
+                    <h3>Science quantitative :</h3>
+                    <p>Décrit l'état, les mouvements et l'évolution de la population à l'aide d'instruments mathématiques et statistiques.</p>
+                    
+                    <h3>Science qualitative :</h3>
+                    <p>Recherche des conséquences, facteurs déterminants et causes des phénomènes mesurés.</p>
+                    
+                    <p><strong>Population :</strong> ensemble d'habitants occupant un espace donné (village, ville, pays).</p>
+                `
+            },
+            {
+                title: "Sources des Données Démographiques",
+                content: `
+                    <h3>1. Recensement de la population</h3>
+                    <p>Dénombrement exhaustif et à jour fixe des habitants.</p>
+                    <p>Recensement scientifique : informations sur structure, fécondité, mortalité, migrations.</p>
+                    
+                    <h3>2. État civil</h3>
+                    <p>Système permanent d'enregistrement officiel au jour le jour :</p>
+                    <ul>
+                        <li>Naissances, décès, mariages</li>
+                        <li>Divorce, séparation, adoption</li>
+                        <li>Légitimité, reconnaissance, annulation</li>
+                        <li>Changement de nom</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Physionomie d'une Population - Taille",
+                content: `
+                    <h3>Importance de la taille :</h3>
+                    <ul>
+                        <li>Estimation de la force de travail</li>
+                        <li>Besoin de consommation</li>
+                        <li>Mise en valeur du pays</li>
+                        <li>Rentabilité des investissements</li>
+                    </ul>
+                    
+                    <h3>Composition par sexe :</h3>
+                    <ul>
+                        <li>Répartition des tâches</li>
+                        <li>Garantie pour la nuptialité et la reproduction</li>
+                        <li>Risque de célibat forcé si déséquilibre</li>
+                    </ul>
+                    
+                    <h3>Mesures :</h3>
+                    <div class="formula">
+                        <p>Sex ratio = Nb hommes / Nb femmes (ou inverse)</p>
+                        <p>Taux de masculinité = (Nb hommes / Population totale) × 100</p>
+                    </div>
+                `
+            },
+            {
+                title: "Composition par Âge",
+                content: `
+                    <h3>Regroupements d'âges :</h3>
+                    
+                    <h4>Deux grands groupes :</h4>
+                    <ul>
+                        <li>Enfants (garçons et filles)</li>
+                        <li>Adultes (hommes et femmes)</li>
+                    </ul>
+                    
+                    <h4>Trois groupes :</h4>
+                    <ul>
+                        <li><strong>0-14 ans :</strong> enfants</li>
+                        <li><strong>15-64 ans :</strong> personnes actives</li>
+                        <li><strong>65 ans et + :</strong> vieillards</li>
+                    </ul>
+                    
+                    <div class="definition">
+                        <p><strong>Population jeune :</strong> proportion de moins de 15 ans ≥ 40%</p>
+                        <p><strong>Population vieille :</strong> proportion de 65 ans et + ≥ 10%</p>
+                    </div>
+                `
+            },
+            {
+                title: "Natalité et Fécondité (1/2)",
+                content: `
+                    <h3>Accroissement démographique :</h3>
+                    <p>Mouvement de la population, croissance, évolution dans le temps.</p>
+                    
+                    <h3>Types de populations :</h3>
+                    <ul>
+                        <li><strong>Population fermée :</strong> pas de migration (naissances et décès uniquement)</li>
+                        <li><strong>Population ouverte :</strong> facteurs naturels + migrations</li>
+                    </ul>
+                    
+                    <h3>Composantes de l'accroissement :</h3>
+                    <ul>
+                        <li>Natalité (augmente)</li>
+                        <li>Mortalité (diminue)</li>
+                        <li>Migrations (immigration augmente, émigration diminue)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Natalité et Fécondité (2/2)",
+                content: `
+                    <h3>Définitions :</h3>
+                    <ul>
+                        <li><strong>Natalité :</strong> fréquence des naissances dans une population</li>
+                        <li><strong>Fécondité :</strong> fréquence des naissances par rapport aux femmes en âge de procréer (15-49 ans)</li>
+                    </ul>
+                    
+                    <h3>Taux brut de natalité (TBN) :</h3>
+                    <div class="formula">
+                        TBN = (Naissances vivantes / Population moyenne) × 1000
+                    </div>
+                    <p>Valeurs : 10 à 55 pour 1000</p>
+                    <p>Europe : 10-12 ‰, Afrique : plus élevé</p>
+                    <p>Congo (1984) : 48,1 ‰</p>
+                `
+            },
+            {
+                title: "Taux Global de Fécondité Générale",
+                content: `
+                    <div class="formula">
+                        <p>TGFG = (Naissances vivantes annuelles / Nombre femmes 15-49 ans) × 1000</p>
+                    </div>
+                    
+                    <div class="example">
+                        <p><strong>Exemple :</strong></p>
+                        <p>14.012 femmes de 15-49 ans, 3.411 naissances vivantes</p>
+                        <p>TGFG = 3411/14012 × 1000 = 243,4 pour 1000</p>
+                        <p>Pour 1000 femmes → 243,4 naissances vivantes</p>
+                    </div>
+                    
+                    <p>On parle de fécondité générale car ensemble des femmes sans distinction d'état matrimonial.</p>
+                `
+            },
+            {
+                title: "Mortalité et Morbidité",
+                content: `
+                    <h3>Mortalité :</h3>
+                    <p>Fréquence statistique des décès dans une population sur une période.</p>
+                    <p>Types : générale, infantile, juvénile, maternelle, sénile.</p>
+                    
+                    <h3>Taux brut de mortalité (TBM) :</h3>
+                    <div class="formula">
+                        TBM = (Décès annuels / Population moyenne) × 1000
+                    </div>
+                    
+                    <h3>Morbidité :</h3>
+                    <ul>
+                        <li><strong>Prévalence :</strong> fréquence d'une maladie à un moment donné</li>
+                        <li><strong>Incidence :</strong> nombre de nouveaux cas sur une période</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Introduction à la Nutrition",
+                content: `
+                    <div class="definition">
+                        <p>La nutrition humaine traite des besoins nutritionnels, de la composition des aliments, de la consommation et des habitudes alimentaires, de la valeur nutritive des aliments et des rations, des rapports entre la nutrition, la santé et les maladies.</p>
+                    </div>
+                    
+                    <p>La malnutrition est un problème majeur de santé publique dans les pays en développement, touchant essentiellement l'enfant, avec risque plus élevé de morbidité et de mortalité.</p>
+                    
+                    <h3>4 formes principales de malnutrition en RDC :</h3>
+                    <ul>
+                        <li>Malnutrition protéino-énergétique (MPE)</li>
+                        <li>Anémies nutritionnelles</li>
+                        <li>Troubles dus à carence en iode (TDCI)</li>
+                        <li>Avitaminose A</li>
+                    </ul>
+                    <p>Les plus répandues : anémie ferriprive et MPE.</p>
+                `
+            },
+            {
+                title: "Besoins Nutritionnels",
+                content: `
+                    <h3>Trois types de besoins :</h3>
+                    
+                    <h4>1. Besoins énergétiques</h4>
+                    <ul>
+                        <li><strong>Métabolisme de base :</strong> énergie minimale au repos (homme: 6900 kJ, femme: 5500 kJ)</li>
+                        <li><strong>Métabolisme global :</strong> dépense totale selon activité</li>
+                    </ul>
+                    
+                    <h4>2. Besoins plastiques (bâtisseurs)</h4>
+                    <p>Synthèse et renouvellement des cellules (grossesse, croissance, réparation)</p>
+                    
+                    <h4>3. Besoins fonctionnels</h4>
+                    <p>Substances indispensables pour les fonctions de l'organisme</p>
+                `
+            },
+            {
+                title: "Valeurs Énergétiques",
+                content: `
+                    <h3>Énergie libérée par gramme :</h3>
+                    <div class="formula">
+                        <ul>
+                            <li>Lipides : 38 kJ</li>
+                            <li>Protides : 17 kJ</li>
+                            <li>Glucides : 17 kJ</li>
+                        </ul>
+                    </div>
+                    
+                    <p>1 kcal = 4,18 kJ</p>
+                    
+                    <h3>Production d'énergie :</h3>
+                    <p>Oxydation ou respiration cellulaire dans les mitochondries :</p>
+                    <p>Glucose (C6H12O6) + Dioxygène (O2) → Énergie</p>
+                `
+            },
+            {
+                title: "Équilibre Alimentaire",
+                content: `
+                    <h3>Répartition entre les repas :</h3>
+                    <ul>
+                        <li>Petit déjeuner : 25% de l'AET</li>
+                        <li>Déjeuner : 35-40% de l'AET</li>
+                        <li>Dîner : 30% de l'AET</li>
+                        <li>Goûter et collations : 5-10% de l'AET</li>
+                    </ul>
+                    
+                    <h3>Contribution des macronutriments :</h3>
+                    <ul>
+                        <li>Glucides : 50-55%</li>
+                        <li>Lipides : 30-35%</li>
+                        <li>Protides : 10-15%</li>
+                        <li>Alcool : 0% (max 10%)</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Les Protéines",
+                content: `
+                    <h3>Rôles :</h3>
+                    <ul>
+                        <li>Apport en acides aminés</li>
+                        <li>Constitution et renouvellement des tissus</li>
+                        <li>Fonctionnement de l'organisme</li>
+                    </ul>
+                    
+                    <h3>Sources :</h3>
+                    <ul>
+                        <li><strong>Meilleures protéines :</strong> viandes, poissons, œufs, produits laitiers</li>
+                        <li><strong>Autres sources :</strong> légumes secs, céréales</li>
+                    </ul>
+                    
+                    <p>1g de protéine = 4 kcal</p>
+                `
+            },
+            {
+                title: "Les Lipides et Glucides",
+                content: `
+                    <h3>Lipides (graisses) :</h3>
+                    <ul>
+                        <li>Indispensables au fonctionnement cellulaire</li>
+                        <li>Rôle selon type d'acides gras (saturés, insaturés)</li>
+                        <li>1g de lipide = 9 kcal</li>
+                    </ul>
+                    
+                    <h3>Glucides (sucres) :</h3>
+                    <ul>
+                        <li>Principale source d'énergie</li>
+                        <li>Privilégier glucides complexes (amidon)</li>
+                        <li>Pain à chaque repas, féculents quotidiens</li>
+                        <li>1g de glucide = 4 kcal</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Les Vitamines Hydrosolubles (1/2)",
+                content: `
+                    <table class="table">
+                        <tr>
+                            <th>Vitamine</th>
+                            <th>Rôles</th>
+                            <th>Sources</th>
+                        </tr>
+                        <tr>
+                            <td>Vitamine C</td>
+                            <td>Antioxydant, collagène, immunité, absorption fer</td>
+                            <td>Agrumes, kiwis, poivrons, fraises</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B1 (thiamine)</td>
+                            <td>Métabolisme énergétique, système nerveux</td>
+                            <td>Céréales complètes, porc, légumineuses</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B2 (riboflavine)</td>
+                            <td>Métabolisme énergétique, peau, yeux</td>
+                            <td>Lait, œufs, viande, légumes verts</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B3 (niacine)</td>
+                            <td>Métabolisme glucides, lipides, protéines</td>
+                            <td>Volaille, poisson, arachides, céréales</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: "Les Vitamines Hydrosolubles (2/2)",
+                content: `
+                    <table class="table">
+                        <tr>
+                            <th>Vitamine</th>
+                            <th>Rôles</th>
+                            <th>Sources</th>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B5</td>
+                            <td>Synthèse hormones et acides gras</td>
+                            <td>Œufs, viande, légumineuses</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B6</td>
+                            <td>Métabolisme acides aminés, neurotransmetteurs</td>
+                            <td>Bananes, volailles, poissons, pommes de terre</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B7 (biotine)</td>
+                            <td>Cheveux, peau, ongles, métabolisme énergétique</td>
+                            <td>Œufs, noix, soja, foie</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B9 (acide folique)</td>
+                            <td>ADN, croissance, prévention malformations fœtales</td>
+                            <td>Légumes verts, légumineuses, agrumes</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine B12</td>
+                            <td>Globules rouges, système nerveux</td>
+                            <td>Produits animaux (viande, poissons, œufs, lait)</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: "Les Vitamines Liposolubles",
+                content: `
+                    <table class="table">
+                        <tr>
+                            <th>Vitamine</th>
+                            <th>Rôles</th>
+                            <th>Sources</th>
+                        </tr>
+                        <tr>
+                            <td>Vitamine A (rétinol)</td>
+                            <td>Vision, croissance cellulaire, immunité</td>
+                            <td>Foie, carottes, patates douces, beurre, œufs</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine D (calciférol)</td>
+                            <td>Absorption calcium/phosphore, santé osseuse</td>
+                            <td>Soleil, poissons gras, œufs, produits laitiers</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine E (tocophérol)</td>
+                            <td>Antioxydant, protection cellules</td>
+                            <td>Huiles végétales, noix, graines, légumes verts</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamine K</td>
+                            <td>Coagulation sanguine, santé osseuse</td>
+                            <td>Légumes verts, choux, huiles végétales</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: "Les Sels Minéraux",
+                content: `
+                    <h3>Rôles :</h3>
+                    <ul>
+                        <li><strong>Calcium, Magnésium, Phosphore :</strong> os, influx nerveux</li>
+                        <li><strong>Sodium, Potassium, Chlore :</strong> équilibre hydro-minéral</li>
+                        <li><strong>Fer, Fluor, Iode :</strong> oligo-éléments essentiels</li>
+                    </ul>
+                    
+                    <h3>Autres substances importantes :</h3>
+                    <ul>
+                        <li><strong>Enzymes :</strong> accélèrent réactions chimiques</li>
+                        <li><strong>Cofacteurs :</strong> vitamines ou minéraux aidant enzymes</li>
+                        <li><strong>Hormones :</strong> messagers chimiques (ex: hormones sexuelles)</li>
+                        <li><strong>Anticorps :</strong> neutralisent antigènes</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Groupes Alimentaires - Céréales et Protéines",
+                content: `
+                    <h3>1. Céréales et féculents</h3>
+                    <p><strong>Exemples :</strong> riz, pain, pâtes, pommes de terre, maïs, légumineuses</p>
+                    <p><strong>Rôles :</strong> source principale d'énergie, fibres, vitamines B</p>
+                    <p><strong>Conseil :</strong> privilégier versions complètes</p>
+                    
+                    <h3>2. Viandes, poissons, œufs</h3>
+                    <p><strong>Exemples :</strong> bœuf, volaille, poissons, fruits de mer, œufs</p>
+                    <p><strong>Rôles :</strong> protéines de haute qualité, fer, zinc, vitamines B</p>
+                    <p><strong>Conseil :</strong> varier sources, limiter viande rouge</p>
+                `
+            },
+            {
+                title: "Groupes Alimentaires - Produits laitiers et Fruits/Légumes",
+                content: `
+                    <h3>3. Produits laitiers</h3>
+                    <p><strong>Exemples :</strong> lait, yaourt, fromages, lait fermenté</p>
+                    <p><strong>Rôles :</strong> calcium, protéines, vitamine D pour os et dents</p>
+                    <p><strong>Conseil :</strong> 2-3 portions/jour, versions peu sucrées</p>
+                    
+                    <h3>4. Fruits et légumes</h3>
+                    <p><strong>Exemples :</strong> pommes, oranges, carottes, épinards, tomates</p>
+                    <p><strong>Rôles :</strong> vitamines, minéraux, fibres, antioxydants</p>
+                    <p><strong>Conseil :</strong> ≥5 portions/jour, variés et de saison</p>
+                `
+            },
+            {
+                title: "Groupes Alimentaires - Matières grasses, Sucres, Boissons",
+                content: `
+                    <h3>5. Matières grasses</h3>
+                    <p><strong>Exemples :</strong> huile, beurre, margarine, avocat, oléagineux</p>
+                    <p><strong>Rôles :</strong> énergie, acides gras essentiels, transport vitamines</p>
+                    <p><strong>Conseil :</strong> huiles végétales (colza, olive), limiter graisses animales</p>
+                    
+                    <h3>6. Produits sucrés</h3>
+                    <p><strong>Exemples :</strong> sucre, confiseries, sodas, pâtisseries</p>
+                    <p><strong>Conseil :</strong> modération (calories vides)</p>
+                    
+                    <h3>7. Boissons</h3>
+                    <p><strong>Conseil :</strong> 1,5-2L d'eau/jour, limiter sucrées et alcoolisées</p>
+                `
+            },
+            {
+                title: "Le Petit Déjeuner Équilibré",
+                content: `
+                    <h3>Composition idéale :</h3>
+                    <ul>
+                        <li><strong>Boisson :</strong> eau, café, thé, lait (réhydratation)</li>
+                        <li><strong>Produit laitier :</strong> lait, fromage, yaourt (protéines, calcium)</li>
+                        <li><strong>Produit sucré :</strong> confiture, miel (plaisir, énergie rapide) - avec modération</li>
+                        <li><strong>Féculent :</strong> pain, biscottes, céréales (glucides complexes)</li>
+                        <li><strong>Matière grasse :</strong> beurre (vitamines A, D) ou margarine</li>
+                        <li><strong>Fruit ou jus :</strong> fruit entier (fibres) ou jus frais (vitamines)</li>
+                    </ul>
+                    
+                    <p>Le petit déjeuner doit représenter 20-25% des apports journaliers.</p>
+                `
+            },
+            {
+                title: "Conseils Pratiques en Nutrition",
+                content: `
+                    <div class="example">
+                        <h4>À faire :</h4>
+                        <ul>
+                            <li>3 repas par jour, aucun sauté</li>
+                            <li>Collation intelligente (fruit, laitage)</li>
+                            <li>≥3 fruits et légumes par jour</li>
+                            <li>Produit laitier à chaque repas</li>
+                            <li>Prendre le temps de manger dans le calme</li>
+                        </ul>
+                        
+                        <h4>À éviter :</h4>
+                        <ul>
+                            <li>Grignotage</li>
+                            <li>Excès de fritures</li>
+                            <li>Croire aux "huiles légères"</li>
+                            <li>Penser que la margarine fait maigrir</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Principe d'or :</strong> Manger de tout un peu, un peu de tout, avec plaisir et raison.</p>
+                `
+            },
+            {
+                title: "Conséquences de la Malnutrition",
+                content: `
+                    <div class="definition">
+                        <p>La malnutrition protéino-énergétique a des conséquences graves à long terme chez l'enfant :</p>
+                    </div>
+                    
+                    <ul>
+                        <li><strong>Handicap physique :</strong> retard de croissance difficile à récupérer</li>
+                        <li><strong>Handicap mental :</strong> altérations du développement cognitif</li>
+                        <li><strong>Risque métabolique :</strong> développement du diabète sucré à l'âge adulte</li>
+                    </ul>
+                    
+                    <h3>Prévention :</h3>
+                    <ul>
+                        <li>Dépistage précoce (CPS)</li>
+                        <li>Vaccination (PEV)</li>
+                        <li>Allaitement exclusif jusqu'à 6 mois</li>
+                        <li>Allaitement maternel jusqu'à 2 ans</li>
+                        <li>Éducation des mères</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Mesure de l'État Nutritionnel - Méthodes Directes",
+                content: `
+                    <h3>Anthropométrie :</h3>
+                    <ul>
+                        <li>Poids</li>
+                        <li>Taille</li>
+                        <li>Périmètre brachial (circonférence du bras)</li>
+                        <li>Périmètre crânien</li>
+                    </ul>
+                    
+                    <h3>Signes cliniques :</h3>
+                    <ul>
+                        <li><strong>Marasme :</strong> faciès de vieillard, peau sur les os, cheveux détériorés, enfant timide</li>
+                        <li><strong>Kwashiorkor :</strong> œdèmes (pieds gonflés), gros ventre, grosses joues, cheveux roux, enfant turbulent</li>
+                    </ul>
+                    
+                    <h3>Consommation alimentaire :</h3>
+                    <p>Pesée des aliments, questionnaires</p>
+                `
+            },
+            {
+                title: "Mesure de l'État Nutritionnel - Méthodes Indirectes",
+                content: `
+                    <h3>Indicateurs :</h3>
+                    <ul>
+                        <li>Taux de mortalité des enfants 1-4 ans (élévé → MPE)</li>
+                        <li>Productions vivrières et disponibilités alimentaires</li>
+                        <li>Prix sur les marchés (prix élevé → malnutrition)</li>
+                        <li>Visite écologique rapide (voir, écouter, demander)</li>
+                        <li>Données météorologiques</li>
+                        <li>Surfaces cultivées et prévisions de récolte</li>
+                        <li>Importations d'aliments</li>
+                        <li>Taux d'inflation</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Indicateurs Anthropométriques",
+                content: `
+                    <h3>Paramètres clés :</h3>
+                    <ul>
+                        <li><strong>Poids à la naissance :</strong> < 2,5 kg = malnutrition (reflète état nutritionnel de la mère)</li>
+                        <li><strong>Poids par rapport à l'âge (P/A)</strong></li>
+                        <li><strong>Taille par rapport à l'âge (T/A)</strong></li>
+                        <li><strong>Poids par rapport à la taille (P/T)</strong></li>
+                        <li><strong>Circonférence brachiale</strong></li>
+                        <li><strong>Périmètre crânien</strong></li>
+                    </ul>
+                `
+            },
+            {
+                title: "Indice de Masse Corporelle (IMC)",
+                content: `
+                    <div class="formula">
+                        <p><strong>IMC = Poids (kg) / Taille² (m)</strong></p>
+                    </div>
+                    
+                    <table class="table">
+                        <tr>
+                            <th>Valeur IMC</th>
+                            <th>Interprétation</th>
+                        </tr>
+                        <tr>
+                            <td>< 16,0</td>
+                            <td>Malnutrition sévère</td>
+                        </tr>
+                        <tr>
+                            <td>16,0 - 16,99</td>
+                            <td>MPE modérée</td>
+                        </tr>
+                        <tr>
+                            <td>17,0 - 18,49</td>
+                            <td>Malnutrition légère</td>
+                        </tr>
+                        <tr>
+                            <td>18,5 - 24,99</td>
+                            <td>Normal</td>
+                        </tr>
+                        <tr>
+                            <td>25,0 - 29,99</td>
+                            <td>Obésité grade 1</td>
+                        </tr>
+                        <tr>
+                            <td>30,0 - 39,99</td>
+                            <td>Obésité grade 2</td>
+                        </tr>
+                        <tr>
+                            <td>≥ 40</td>
+                            <td>Obésité majeure</td>
+                        </tr>
+                    </table>
+                    <p>Poids idéal: homme 22,7 / femme 22,4</p>
+                `
+            },
+            {
+                title: "Classification OMS de la MPE",
+                content: `
+                    <div class="formula">
+                        <p><strong>Classification par écarts-types (Z-scores) :</strong></p>
+                        <ul>
+                            <li><strong>MPE globale :</strong> P/A ≤ -2 ET</li>
+                            <li><strong>MPE aiguë :</strong> P/T ≤ -2 ET</li>
+                            <li><strong>MPE chronique :</strong> T/A ≤ -2 ET</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>-2 ET</strong> signifie que l'indicateur est inférieur de 2 écarts-types à la médiane de référence.</p>
+                    </div>
+                `
+            },
+            {
+                title: "Anémies Nutritionnelles - Seuils",
+                content: `
+                    <table class="table">
+                        <tr>
+                            <th>Groupe</th>
+                            <th>Anémie légère/modérée</th>
+                            <th>Anémie grave</th>
+                        </tr>
+                        <tr>
+                            <td>Femmes enceintes et enfants < 5 ans</td>
+                            <td>Hgb < 11 g/dl</td>
+                            <td>Hgb < 7 g/dl</td>
+                        </tr>
+                        <tr>
+                            <td>Femmes non enceintes et enfants d'âge scolaire</td>
+                            <td>Hgb < 12 g/dl</td>
+                            <td>Hgb < 7 g/dl</td>
+                        </tr>
+                        <tr>
+                            <td>Hommes adultes</td>
+                            <td>Hgb < 13 g/dl</td>
+                            <td>Hgb < 7 g/dl</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: "Apports en Fer Recommandés",
+                content: `
+                    <h3>Besoins quotidiens :</h3>
+                    <ul>
+                        <li><strong>Homme :</strong> 10 mg</li>
+                        <li><strong>Femme :</strong> 15-18 mg</li>
+                    </ul>
+                    
+                    <h3>Grossesse :</h3>
+                    <ul>
+                        <li>Supplément d'1g de fer pour l'unité fœto-placentaire</li>
+                        <li>Administration de sels de fer (≈50 mg/jour)</li>
+                    </ul>
+                    
+                    <h3>Enfant :</h3>
+                    <ul>
+                        <li>Apport 1-1,5 mg/kg/jour à partir du 3ème mois</li>
+                        <li>Lait maternel + complément alimentaire</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Causes de l'Anémie Ferriprive",
+                content: `
+                    <h3>Principales causes :</h3>
+                    <ul>
+                        <li><strong>Insuffisance d'apport en fer</strong></li>
+                        <li><strong>Troubles d'absorption :</strong> facteur intrinsèque déficitaire (achlorhydrie)</li>
+                        <li><strong>Besoins accrus :</strong> grossesse (2ème moitié), lactation, croissance</li>
+                        <li><strong>Hémorragies aiguës ou chroniques</strong></li>
+                        <li><strong>Parasitoses :</strong>
+                            <ul>
+                                <li>Ankylostomes : 1000 œufs/g selles → 4,5 ml sang/jour</li>
+                                <li>Necator Americanus : 1000 œufs/g selles → 2,1 ml sang/jour</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>1,5 million de personnes souffrent d'anémie ferriprive dans le monde.</p>
+                    <p>Groupes les plus atteints : femmes enceintes, allaitantes, enfants < 5 ans.</p>
+                `
+            },
+            {
+                title: "Conséquences de l'Anémie Ferriprive",
+                content: `
+                    <h3>Capacité de travail :</h3>
+                    <ul>
+                        <li>Diminution de l'aptitude aux tâches énergétiques</li>
+                        <li>Réduction de la performance au travail</li>
+                    </ul>
+                    
+                    <h3>Performance intellectuelle :</h3>
+                    <ul>
+                        <li>Diminution de la capacité scolaire chez l'enfant</li>
+                        <li>Réduction du développement psychomoteur avant même l'anémie</li>
+                    </ul>
+                    
+                    <h3>Défenses immunitaires :</h3>
+                    <ul>
+                        <li>Altérations des défenses immunologiques</li>
+                    </ul>
+                    
+                    <h3>Grossesse :</h3>
+                    <ul>
+                        <li>Augmentation du risque de prématurité</li>
+                        <li>Augmentation de la morbidité et mortalité fœto-maternelle</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Conseils Nutritionnels à la CPS",
+                content: `
+                    <div class="example">
+                        <h3>Messages clés pour les mamans :</h3>
+                        <ul>
+                            <li><strong>Allaitement au sein jusqu'à 2 ans</strong></li>
+                            <li><strong>Supplémentation à partir de 6 mois (sevrage progressif) :</strong>
+                                <ul>
+                                    <li>Vitamines</li>
+                                    <li>Sels minéraux</li>
+                                    <li>Glucides et lipides</li>
+                                    <li>Protéines</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <h3>La CPS consiste à :</h3>
+                    <ul>
+                        <li>Identifier enfants à problème (évolution pondérale stationnaire ou décroissante)</li>
+                        <li>Prodiguer des conseils nutritionnels</li>
+                        <li>Faire des démonstrations culinaires</li>
+                        <li>Assurer la réhabilitation nutritionnelle</li>
+                    </ul>
+                `
+            }
+        ];
 
-    currentSlide = index;
-    slideCounter.textContent = `Slide ${index + 1}/${slides.length}`;
-}
+        // Timeline pour la synchronisation audio (en secondes)
+        const timeline = [
+            42,  // 1: Introduction
+            25,  // 2: Définition approfondie
+            46,  // 3: Principes clés
+40,  // 4: Structure du système (1)
+49,  // 5: Structure du système (2)
+55,  // 6: Structure du système (3)
+53,  // 7: Participation communautaire
+41,  // 8: Famille base de santé (1)
+41,  // 9: Famille base de santé (2)
+45,  // 10: Famille base de santé (3)
+45,  // 11: Soins mère-enfant (1)
+45,  // 12: Soins mère-enfant (2)
+38,  // 13: Demande de soins
+34,  // 14: Famille troublée
+38,  // 15: Introduction hygiène milieu
+45,  // 16: Eau potable - rôle pathogène
+41,  // 17: Sources d'eau
+45,  // 18: Captage - puits
+49,  // 19: Qualités de l'eau
+38,  // 20: Qualités bactériologiques
+45,  // 21: Traitement industriel
+41,  // 22: Traitement domicile
+38,  // 23: Déchets solides - définitions
+38,  // 24: Importance évacuation
+41,  // 25: Évacuation ordures
+41,  // 26: Décharge contrôlée
+41,  // 27: Déchets liquides
+41,  // 28: Évacuation déchets liquides
+41,  // 29: Normes eaux usées
+38,  // 30: Déchets infectieux définition
+41,  // 31: Gestion déchets infectieux
+41,  // 32: Hygiène habitat
+38,  // 33: Lutte antivectorielle (1)
+38,  // 34: Lutte antivectorielle (2)
+38,  // 35: Hygiène individuelle
+38,  // 36: Introduction démographie
+38,  // 37: Sources données démographiques
+41,  // 38: Physionomie - taille
+38,  // 39: Composition par âge
+38,  // 40: Natalité et fécondité (1)
+41,  // 41: Natalité et fécondité (2)
+38,  // 42: Taux global fécondité
+38,  // 43: Mortalité et morbidité
+41,  // 44: Introduction nutrition
+45,  // 45: Besoins nutritionnels
+38,  // 46: Valeurs énergétiques
+38,  // 47: Équilibre alimentaire
+38,  // 48: Les protéines
+38,  // 49: Lipides et glucides
+49,  // 50: Vitamines hydrosolubles (1)
+49,  // 51: Vitamines hydrosolubles (2)
+41,  // 52: Vitamines liposolubles
+41,  // 53: Sels minéraux
+41,  // 54: Groupes - céréales et protéines
+41,  // 55: Groupes - laitiers et fruits/légumes
+41,  // 56: Groupes - matières grasses, sucres, boissons
+45,  // 57: Petit déjeuner
+38,  // 58: Conseils pratiques
+41,  // 59: Conséquences malnutrition
+41,  // 60: Mesure directe
+41,  // 61: Mesure indirecte
+38,  // 62: Indicateurs anthropométriques
+45,  // 63: IMC
+38,  // 64: Classification OMS
+41,  // 65: Anémies - seuils
+41,  // 66: Apports en fer
+45,  // 67: Causes anémie
+41,  // 68: Conséquences anémie
+38   // 69: Conseils nutritionnels
+        ];
 
-function jumpToSlide(index) {
-    if (index < 0 || index >= slides.length) return;
+        // Calcul des temps cumulés
+        const cumulativeTimes = [];
+        let sum = 0;
+        timeline.forEach((time, index) => {
+            cumulativeTimes[index] = sum;
+            sum += time;
+        });
+        const totalDuration = sum;
 
-    goToSlide(index);
-    audio.currentTime = cumulativeTimeline[index] / 1000;
-    audio2.currentTime = cumulativeTimeline[index] / 1000; // Synchroniser le 2e audio
-}
+        let currentSlide = 0;
+        let isAutoPlaying = false;
+        let autoPlayInterval;
+        const audioPlayer = document.getElementById('audioPlayer');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        
+        // URL de la musique de fond (à remplacer par votre fichier)
+        // backgroundMusic.src = 'background_music.mp3'; // Décommentez et ajoutez votre fichier
 
-/* =========================
-   SYNCHRO AUDIO → SLIDES
-========================= */
-function updateSlideFromAudio() {
-    if (!isPlaying) return;
-
-    const currentMs = audio.currentTime * 1000;
-    let index = 0;
-
-    for (let i = 0; i < cumulativeTimeline.length; i++) {
-        if (currentMs >= cumulativeTimeline[i]) {
-            index = i;
+        function renderSlide(index) {
+            const contentDiv = document.getElementById('content');
+            const slide = slides[index];
+            
+            contentDiv.innerHTML = `
+                <div class="slide active">
+                    <h2 class="slide-title">${slide.title}</h2>
+                    <div class="slide-content">${slide.content}</div>
+                </div>
+            `;
+            
+            document.getElementById('slideCounter').textContent = `${index + 1}/${slides.length}`;
+            document.getElementById('progressFill').style.width = `${((index + 1) / slides.length) * 100}%`;
+            
+            // Gérer l'état des boutons de navigation
+            if (!isAutoPlaying) {
+                document.getElementById('prevBtn').disabled = index === 0;
+                document.getElementById('nextBtn').disabled = index === slides.length - 1;
+            } else {
+                document.getElementById('prevBtn').disabled = true;
+                document.getElementById('nextBtn').disabled = true;
+            }
+            
+            // Synchroniser l'audio si en mode automatique
+            if (isAutoPlaying && audioPlayer.src) {
+                const targetTime = cumulativeTimes[index];
+                if (Math.abs(audioPlayer.currentTime - targetTime) > 1) {
+                    audioPlayer.currentTime = targetTime;
+                }
+            }
+            
+            // Scroll en haut du contenu
+            contentDiv.scrollTop = 0;
         }
-    }
 
-    if (index !== currentSlide) {
-        goToSlide(index);
-    }
-
-    requestAnimationFrame(updateSlideFromAudio);
-}
-
-/* =========================
-   PROGRESSION
-========================= */
-function updateProgress() {
-    if (!isPlaying || !audio.duration) return;
-
-    const progress = (audio.currentTime / audio.duration) * 100;
-    progressBar.style.width = `${progress}%`;
-
-    if (audio.currentTime < audio.duration) {
-        requestAnimationFrame(updateProgress);
-    }
-}
-
-/* =========================
-   LECTURE - MODIFIÉE POUR 2 AUDIOS
-========================= */
-function startPresentation(fromStart = false) {
-    if (isPlaying) return;
-
-    if (fromStart) {
-        audio.currentTime = 0;
-        audio2.currentTime = 0;  // Important : synchroniser les deux
-        goToSlide(0);
-    }
-
-    isPlaying = true;
-    playButton.textContent = "⏸ Pause";
-    statusElement.textContent = "En cours...";
-
-    // Lancer les deux audios simultanément
-    audio.play();
-    audio2.play();
-    audio2.volume = 0.9;
-    audio.volume = 1;
-    updateSlideFromAudio();
-    updateProgress();
-}
-
-function stopPresentation() {
-    isPlaying = false;
-    audio.pause();
-    audio2.pause();  // Mettre en pause le second audio aussi
-    playButton.textContent = "▶ Reprendre";
-    statusElement.textContent = "En pause";
-}
-
-/* =========================
-   BOUTONS
-========================= */
-playButton.onclick = () => {
-    isPlaying ? stopPresentation() : startPresentation(false);
-};
-
-restartButton.onclick = () => {
-    stopPresentation();
-    startPresentation(true);
-};
-
-/* =========================
-   SYNC MAIN TENUE SI DÉCALAGE
-========================= */
-// Si l'utilisateur déplace manuellement le curseur
-audio.addEventListener("seeked", () => {
-    if (isPlaying) {
-        audio2.currentTime = audio.currentTime;
-    }
-});
-
-audio2.addEventListener("seeked", () => {
-    if (isPlaying) {
-        audio.currentTime = audio2.currentTime;
-    }
-});
-
-// Si un audio se termine, arrêter l'autre aussi
-audio.addEventListener("ended", () => {
-    if (isPlaying) {
-        stopPresentation();
-        statusElement.textContent = "Terminé";
-        progressBar.style.width = "100%";
-    }
-});
-
-audio2.addEventListener("ended", () => {
-    if (isPlaying) {
-        stopPresentation();
-        statusElement.textContent = "Terminé";
-        progressBar.style.width = "100%";
-    }
-});
-
-/* =========================
-   CLAVIER
-========================= */
-document.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight") jumpToSlide(currentSlide + 1);
-    if (e.key === "ArrowLeft") jumpToSlide(currentSlide - 1);
-    if (e.key === " ") {
-        e.preventDefault();
-        isPlaying ? stopPresentation() : startPresentation(false);
-    }
-});
-
-/* =========================
-   SCROLL MANUEL
-========================= */
-container.addEventListener("scroll", () => {
-    if (isPlaying) return;
-
-    const containerRect = container.getBoundingClientRect();
-    let maxVisible = 0;
-    let index = currentSlide;
-
-    slides.forEach((slide, i) => {
-        const rect = slide.getBoundingClientRect();
-        const visible = Math.min(rect.bottom, containerRect.bottom) -
-                        Math.max(rect.top, containerRect.top);
-        if (visible > maxVisible) {
-            maxVisible = visible;
-            index = i;
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                renderSlide(currentSlide);
+            }
         }
-    });
 
-    if (index !== currentSlide) {
-        jumpToSlide(index);
-    }
-});
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide(currentSlide);
+            }
+        }
 
-/* =========================
-   INIT
-========================= */
-goToSlide(0);
-</script>
+        function toggleAutoPlay() {
+            const playBtn = document.getElementById('playBtn');
+            const statusDiv = document.getElementById('status');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (!isAutoPlaying) {
+                // Démarrer le mode automatique
+                if (!audioPlayer.src) {
+                    alert('Veuillez ajouter le fichier audio "sante_communautaire.mp3" dans le même dossier.');
+                    return;
+                }
+                
+                isAutoPlaying = true;
+                playBtn.textContent = '⏸ Pause';
+                playBtn.classList.remove('play-btn');
+                playBtn.classList.add('stop-btn');
+                statusDiv.textContent = 'Mode automatique';
+                statusDiv.style.background = 'rgba(40, 167, 69, 0.9)';
+                
+                // Lancer l'audio
+                audioPlayer.play();
+                
+                // Lancer la musique de fond si disponible
+                if (backgroundMusic.src) {
+                    backgroundMusic.play();
+                    backgroundMusic.volume = 0.3; // Volume à 30% pour ne pas couvrir la voix
+                }
+                
+                // Désactiver les boutons de navigation
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                
+                // Démarrer la synchronisation
+                startSync();
+            } else {
+                // Arrêter le mode automatique
+                isAutoPlaying = false;
+                playBtn.textContent = '▶ Lecture automatique';
+                playBtn.classList.remove('stop-btn');
+                playBtn.classList.add('play-btn');
+                statusDiv.textContent = 'Mode navigation';
+                statusDiv.style.background = 'rgba(0,0,0,0.8)';
+                
+                // Mettre en pause les audios
+                audioPlayer.pause();
+                if (backgroundMusic.src) {
+                    backgroundMusic.pause();
+                }
+                
+                // Réactiver les boutons de navigation
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+                
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                }
+            }
+        }
 
+        function startSync() {
+            // Vérifier la position toutes les 100ms
+            autoPlayInterval = setInterval(() => {
+                if (!isAutoPlaying) return;
+                
+                const currentTime = audioPlayer.currentTime;
+                
+                // Trouver la slide correspondante
+                for (let i = 0; i < cumulativeTimes.length; i++) {
+                    const nextTime = cumulativeTimes[i + 1] || totalDuration;
+                    if (currentTime >= cumulativeTimes[i] && currentTime < nextTime) {
+                        if (i !== currentSlide) {
+                            currentSlide = i;
+                            renderSlide(currentSlide);
+                        }
+                        break;
+                    }
+                }
+                
+                // Mettre à jour la progression
+                const progress = (currentTime / totalDuration) * 100;
+                document.getElementById('progressFill').style.width = `${progress}%`;
+            }, 100);
+        }
+
+        // Gestionnaire d'événements clavier
+        document.addEventListener('keydown', (e) => {
+            if (isAutoPlaying) return; // Désactiver la navigation en mode auto
+            
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoPlay();
+            }
+        });
+
+        // Gestion du scroll dans le contenu
+        document.getElementById('content').addEventListener('scroll', function() {
+            // Optionnel: mettre à jour quelque chose si nécessaire
+        });
+
+        // Initialisation
+        renderSlide(0);
+    </script>
 </body>
 </html>
+               
+       
