@@ -126,7 +126,7 @@ body {
 <body>
 
 <audio id="audio" src="tête.mp3"></audio>
-//<audio id="audio2" src="fond.m4a"></audio>
+
 <!-- ==================== -->
 <!-- INTRODUCTION GÉNÉRALE -->
 <!-- ==================== -->
@@ -1027,7 +1027,7 @@ function jumpToSlide(index) {
 
     goToSlide(index);
     audio.currentTime = cumulativeTimeline[index] / 1000;
-    audio2.currentTime = cumulativeTimeline[index] / 1000; // Synchroniser le 2e audio
+     // Synchroniser le 2e audio
 }
 
 /* =========================
@@ -1074,7 +1074,7 @@ function startPresentation(fromStart = false) {
 
     if (fromStart) {
         audio.currentTime = 0;
-        audio2.currentTime = 0;  // Important : synchroniser les deux
+          // Important : synchroniser les deux
         goToSlide(0);
     }
 
@@ -1084,8 +1084,8 @@ function startPresentation(fromStart = false) {
 
     // Lancer les deux audios simultanément
     audio.play();
-    audio2.play();
-    audio2.volume = 0.9;
+    
+    
     audio.volume = 1;
     updateSlideFromAudio();
     updateProgress();
@@ -1093,8 +1093,7 @@ function startPresentation(fromStart = false) {
 
 function stopPresentation() {
     isPlaying = false;
-    audio.pause();
-    audio2.pause();  // Mettre en pause le second audio aussi
+    audio.pause();  // Mettre en pause le second audio aussi
     playButton.textContent = "▶ Reprendre";
     statusElement.textContent = "En pause";
 }
@@ -1115,17 +1114,7 @@ restartButton.onclick = () => {
    SYNC MAIN TENUE SI DÉCALAGE
 ========================= */
 // Si l'utilisateur déplace manuellement le curseur
-audio.addEventListener("seeked", () => {
-    if (isPlaying) {
-        audio2.currentTime = audio.currentTime;
-    }
-});
 
-audio2.addEventListener("seeked", () => {
-    if (isPlaying) {
-        audio.currentTime = audio2.currentTime;
-    }
-});
 
 // Si un audio se termine, arrêter l'autre aussi
 audio.addEventListener("ended", () => {
@@ -1136,13 +1125,8 @@ audio.addEventListener("ended", () => {
     }
 });
 
-audio2.addEventListener("ended", () => {
-    if (isPlaying) {
-        stopPresentation();
-        statusElement.textContent = "Terminé";
-        progressBar.style.width = "100%";
-    }
-});
+
+
 
 /* =========================
    CLAVIER
